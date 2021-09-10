@@ -1,0 +1,21 @@
+<h1>{{name}}</h1>
+<h3>Description: {{description}}</h3>
+
+{{#if imageUrl}}
+    <img src="{{imageUrl}}" />
+{{/if}}
+<button><a href="/houses/{{id}}/edit">Edit House</a></button>
+<hr/>
+{{!-- <p>Add a review</p>
+<form action="/reviews/{{id}}/add" method="POST">
+    <label>Name</label>
+    <input type="text" name="name" />
+
+    <label>Comment</label>
+    <textarea name="comment"></textarea>
+    <button type="submit">Add Review</button>
+</form>
+<hr/> --}}
+{{!-- {{#each reviews}}
+    <p>{{comment}} - {{name}}</p>
+{{/each}} --}}

@@ -10,3 +10,21 @@ a {
 h1 {
   color: 15px;
 }
+
+.flex-horizontal{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+
+
+.margin-navbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}

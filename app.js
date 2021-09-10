@@ -13,8 +13,33 @@ const express = require("express");
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
 
+//Adding more features to hbs
+const helpers = require("handlebars-helpers");
+hbs.registerHelper(helpers());
+
+
+// Basic password encryption 
+const bcrypt = require("bcryptjs");
+const saltRounds = 10;
+const salt = bcrypt.genSaltSync(saltRounds);
+
 const app = express();
 
+
+const session = require("express-session");
+app.use(
+    session({
+    //secret: "myaplicationsecret",
+    //the line above is secret so it will be moved to .env to the enviroment for security purposes
+    secret: process.env.SESSION_SECRET,
+    cookie: {
+        sameSite: true, //because both frontend and backend are running on the same hostname - localhost
+        httpOnly: true, //we are not using https
+        maxAge: 60000, //session time after 1 minute the session will end
+    },
+        rolling: true, //rolling allows the session to keep renewing as long as the user interacts with the app
+})
+);
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 
@@ -27,6 +52,16 @@ app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
 // 👇 Start handling routes here
 const index = require("./routes/index");
 app.use("/", index);
+const auth = require("./routes/auth");
+app.use("/", auth);
+const halls = require("./routes/halls");
+app.use("/", halls);
+const students = require("./routes/students");
+app.use("/", students );
+const tournament = require("./routes/tournament");
+app.use("/", tournament);
+const houses = require("./routes/houses");
+app.use("/", tournament);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

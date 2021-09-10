@@ -7,13 +7,67 @@
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>{{title}}</title>
       <link rel="stylesheet" href="/stylesheets/style.css" />
+      <script src="/js/script.js" defer></script>
    </head>
 
    <body>
+   <ul class="flex-horizontal">
+         <li>
+         <a href="/">Home</a>
+         </li>
+         <li>
+         <a href="/houses">Houses</a>
+         </li>
+         <li>
+         <a href="/houses/create">Create House</a>
+         </li>
+         <li>
+               <a href="/halls">Halls</a>
+         </li>
+         <li>
+               <a href="/halls/create">Create Hall</a>
+         </li>
+         <li>
+            <a href="/students">Students</a>
+         </li>
+         <li>
+            <a href="/students/create">Create Student</a>
+         </li>
+         
+         <li>
+            <a href="/teachers">Teachers</a>
+         </li>
+         <li>
+            <a href="/teachers/create">Create Teacher</a>
+         </li>
+         <li>
+            <a href="/tournaments">tournaments</a>
+         </li>
+
+           <li>
+            <a href="/tournaments/create">Create Tournament</a>
+         </li>
+         <li>
+            <a href="/auth">auth</a>
+         </li> 
+   
+          <li>
+            <a href="/signup">Singup</a>
+         </li>
+           <li>
+            <a href="/login">Login</a>
+         </li>
+         <li>
+            <form action="/logout" method="POST">
+            <button type="submit">Logout</button>
+            </form>
+         </li>
+
+</ul>
 
       {{{body}}}
 
-      <script src="/js/script.js"></script>
+      
    </body>
 
 </html>
