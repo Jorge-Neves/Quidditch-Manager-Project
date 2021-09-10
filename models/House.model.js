@@ -5,7 +5,7 @@ const houseSchema = new Schema({
       name: String,
       element: String,
       // modifiers:{},
-      values:[],
+      //values:[],
       description: String,
 });
 

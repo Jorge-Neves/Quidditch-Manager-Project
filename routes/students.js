@@ -18,7 +18,12 @@ router.get("/students", async (req, res) => {
     }
 });
 
-
+router.get("/students/update", (req, res) => {
+   
+    res.render("students/students-update");
+   
+   
+});
 
 
 

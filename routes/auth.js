@@ -35,7 +35,7 @@ if (username === "" || password === ""){
         username,  //short hand notation when you have the same key and value you can skip it
         password: hashedPassword,
     });
-    res.redirect("/");
+    res.redirect("/dashboard/sorting");
    } catch(e) {
        console.log("error", e)
    }
@@ -69,7 +69,7 @@ router.post("/login", async (req, res) => {
         req.session.currentUser = user;
         //object is an object that becomes available after what we set up in app.js
         //this allows for multiple people logged in at the same time
-        res.redirect("/")
+        res.redirect("/dashboard")
     } else {
         res.render("auth/login", {errorMessage:"Invalid login"})
     }

@@ -20,7 +20,12 @@ router.get("/tournaments", async (req, res) => {
 });
 
 
-
+router.get("/tournaments/update", (req, res) => {
+   
+    res.render("tournaments/tournaments-update");
+   
+   
+});
 
 
 

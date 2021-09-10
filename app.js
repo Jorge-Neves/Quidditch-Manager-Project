@@ -54,14 +54,14 @@ const index = require("./routes/index");
 app.use("/", index);
 const auth = require("./routes/auth");
 app.use("/", auth);
-const halls = require("./routes/halls");
-app.use("/", halls);
+const dashboard = require("./routes/dashboard");
+app.use("/", dashboard);
 const students = require("./routes/students");
 app.use("/", students );
 const tournament = require("./routes/tournament");
 app.use("/", tournament);
 const houses = require("./routes/houses");
-app.use("/", tournament);
+app.use("/", houses);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

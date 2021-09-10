@@ -8,7 +8,7 @@ const Teacher = require("../models/Teacher.model.js");
 
 
 
-router.get("/houses", async (req, res) => {
+router.get("/houses/", async (req, res) => {
     try{
     const houses = await House.find();
 
@@ -16,6 +16,14 @@ router.get("/houses", async (req, res) => {
     } catch(e){
         console.log("error", e)
     }
+});
+
+
+router.get("/houses/update", (req, res) => {
+   
+    res.render("houses/houses-update");
+   
+   
 });
 
 
