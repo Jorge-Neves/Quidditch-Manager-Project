@@ -4,15 +4,16 @@ const House = require("../models/House.model.js");
 const Student = require("../models/Student.model");
 const Team = require("../models/Team.model.js");
 const Teacher = require("../models/Teacher.model.js");
+const Tournament = require("../models/tournament.model");
 
 
 
 
-router.get("/houses", async (req, res) => {
+router.get("/tournaments", async (req, res) => {
     try{
-    const houses = await House.find();
+    const tournaments = await Tournament.find();
 
-    res.render("houses/houses-list", {houses});
+    res.render("tournaments/tournaments-list", {tournaments});
     } catch(e){
         console.log("error", e)
     }
@@ -23,15 +24,15 @@ router.get("/houses", async (req, res) => {
 
 
 
-router.get("/houses/create", async (req, res) => {
-    res.render("houses/houses-create")
+router.get("/tournaments/create", async (req, res) => {
+    res.render("tournaments/tournaments-create")
 });
 
-router.post("/houses/create", async (req, res) => {
+router.post("/tournaments/create", async (req, res) => {
         try{
         const { name, description } = req.body;
-        await House.create({ name, description });
-        res.redirect("/houses");
+        await Tournament.create({ name, description });
+        res.redirect("/tournaments");
             } catch(e){
                 console.log("error", e)
             }
@@ -39,44 +40,44 @@ router.post("/houses/create", async (req, res) => {
     });
 
 
-router.post("/houses/create", async (req, res) => {
+router.post("/tournaments/create", async (req, res) => {
 
     const { name, description } = req.body;
 try{
-    await House.create({ name, description });
-    res.redirect("/houses/houses-create");
+    await Tournament.create({ name, description });
+    res.redirect("/tournaments/tournaments-create");
 } catch(e){
     console.log("error", e)
 }
   
 });
 
-router.get("/houses/:houseId", async (req, res) => {
+router.get("/tournaments/:tournamentId", async (req, res) => {
     try{
-    const houseId = await House.findById(req.params.houseId)
-    res.render("houses/houses-details", houseId)
+    const torunamentId = await Tournament.findById(req.params.tournamentId)
+    res.render("tournaments/tournaments-details", tournamentId)
 } catch(e){
     console.log("error", e)
 }
 });
 
 
-router.get("/houses/:houseId/edit", async (req, res) => {
+router.get("/tournaments/:tournamentId/edit", async (req, res) => {
     try{
-    const houses = await House.findById(req.params.houseId)
-    res.render("houses/houses-edit", houses);
+    const tournamnets = await Tournament.findById(req.params.torunamentId)
+    res.render("tournaments/tournaments-edit", tournaments);
 } catch(e){
     console.log("error", e)
 }
 });
 
-router.post("/houses/:houseId/edit", async (req, res) => {
+router.post("/tournaments/:tournamentId/edit", async (req, res) => {
     const { name, description} = req.body;
     try{
-     await House.findByIdAndUpdate(req.params.houseId, {
+     await Tournament.findByIdAndUpdate(req.params.tournamentId, {
        name, description
     });
-    res.redirect(`/houses/${req.params.houseId}`);
+    res.redirect(`/tournamnets/${req.params.tournamentId}`);
 } catch(e){
     console.log("error", e)
 }
@@ -84,10 +85,10 @@ router.post("/houses/:houseId/edit", async (req, res) => {
 
 
 
-router.post("/houses/:houseId/delete", async (req, res) => {
+router.post("/tournaments/:tournamentId/delete", async (req, res) => {
     try{
-     await House.findByIdAndRemove(req.params.houseId);
-    res.redirect("/houses/");
+     await Tournament.findByIdAndRemove(req.params.tournamentId);
+    res.redirect("/tournaments/");
 } catch(e){
     console.log("error", e)
 }

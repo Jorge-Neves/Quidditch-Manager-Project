@@ -8,11 +8,11 @@ const Teacher = require("../models/Teacher.model.js");
 
 
 
-router.get("/houses", async (req, res) => {
+router.get("/students", async (req, res) => {
     try{
-    const houses = await House.find();
+    const students = await Student.find();
 
-    res.render("houses/houses-list", {houses});
+    res.render("students/students-list", {students});
     } catch(e){
         console.log("error", e)
     }
@@ -23,15 +23,15 @@ router.get("/houses", async (req, res) => {
 
 
 
-router.get("/houses/create", async (req, res) => {
-    res.render("houses/houses-create")
+router.get("/students/create", async (req, res) => {
+    res.render("students/students-create")
 });
 
-router.post("/houses/create", async (req, res) => {
+router.post("/students/create", async (req, res) => {
         try{
         const { name, description } = req.body;
-        await House.create({ name, description });
-        res.redirect("/houses");
+        await Student.create({ name, description });
+        res.redirect("/students");
             } catch(e){
                 console.log("error", e)
             }
@@ -39,11 +39,11 @@ router.post("/houses/create", async (req, res) => {
     });
 
 
-router.post("/houses/create", async (req, res) => {
+router.post("/students/create", async (req, res) => {
 
     const { name, description } = req.body;
 try{
-    await House.create({ name, description });
+    await Student.create({ name, description });
     res.redirect("/houses/houses-create");
 } catch(e){
     console.log("error", e)
@@ -51,32 +51,32 @@ try{
   
 });
 
-router.get("/houses/:houseId", async (req, res) => {
+router.get("/students/:studentId", async (req, res) => {
     try{
-    const houseId = await House.findById(req.params.houseId)
-    res.render("houses/houses-details", houseId)
+    const studentId = await Student.findById(req.params.studentId)
+    res.render("students/students-details", studentId)
 } catch(e){
     console.log("error", e)
 }
 });
 
 
-router.get("/houses/:houseId/edit", async (req, res) => {
+router.get("/students/:studentId/edit", async (req, res) => {
     try{
-    const houses = await House.findById(req.params.houseId)
-    res.render("houses/houses-edit", houses);
+    const students = await Student.findById(req.params.studentId)
+    res.render("students/students-edit", students);
 } catch(e){
     console.log("error", e)
 }
 });
 
-router.post("/houses/:houseId/edit", async (req, res) => {
+router.post("/students/:studentId/edit", async (req, res) => {
     const { name, description} = req.body;
     try{
-     await House.findByIdAndUpdate(req.params.houseId, {
+     await Student.findByIdAndUpdate(req.params.studentId, {
        name, description
     });
-    res.redirect(`/houses/${req.params.houseId}`);
+    res.redirect(`/students/${req.params.studentId}`);
 } catch(e){
     console.log("error", e)
 }
@@ -84,10 +84,10 @@ router.post("/houses/:houseId/edit", async (req, res) => {
 
 
 
-router.post("/houses/:houseId/delete", async (req, res) => {
+router.post("/students/:studentId/delete", async (req, res) => {
     try{
-     await House.findByIdAndRemove(req.params.houseId);
-    res.redirect("/houses/");
+     await Student.findByIdAndRemove(req.params.studentId);
+    res.redirect("/students/");
 } catch(e){
     console.log("error", e)
 }

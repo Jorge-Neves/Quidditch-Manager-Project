@@ -1,13 +1,12 @@
-<h1>{{title}}</h1>
-<h3>Summary: {{description}}</h3>
-<p>Author: {{author.name}}</p>
-<p>Rating: {{rating}}</p>
+<h1>{{name}}</h1>
+<h3>Description: {{description}}</h3>
+
 {{#if imageUrl}}
     <img src="{{imageUrl}}" />
 {{/if}}
-<button><a href="/books/{{id}}/edit">Edit Book</a></button>
+<button><a href="/students/{{id}}/edit">Edit a Student</a></button>
 <hr/>
-<p>Add a review</p>
+{{!-- <p>Add a review</p>
 <form action="/reviews/{{id}}/add" method="POST">
     <label>Name</label>
     <input type="text" name="name" />
@@ -16,7 +15,7 @@
     <textarea name="comment"></textarea>
     <button type="submit">Add Review</button>
 </form>
-<hr/>
-{{#each reviews}}
+<hr/> --}}
+{{!-- {{#each reviews}}
     <p>{{comment}} - {{name}}</p>
-{{/each}}
+{{/each}} --}}

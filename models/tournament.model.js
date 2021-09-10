@@ -10,6 +10,6 @@ const tournamentSchema = new Schema({
   
 });
 
-const Tournament = model("Tournament", houseSchema);
+const Tournament = model("Tournament", tournamentSchema);
 
 module.exports = Tournament;

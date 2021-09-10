@@ -1,5 +1,13 @@
-<h1>Students list</h1>~
+<h1>students list</h1>
+{{#each students}}
+ <a href="students/{{id}}">  {{name}}  </a>
 
+<br>
+Description: {{description}}
+<br>
+<br>
+<br>
+{{/each}}
 {{!-- <ul>
 {{#each books}}
 <li>
