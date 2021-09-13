@@ -6,6 +6,23 @@
 {{/if}}
 <button><a href="/students/{{id}}/edit">Edit a Student</a></button>
 <hr/>
+
+{{#if choosen}}
+
+
+<form action="/students/{{id}}/remove" method="POST">
+<p>Press to remove {{name}} from your quidditch lineup</p>
+    <button type="submit">Bench</button>
+</form>
+
+{{/ if}}
+<form action="/students/{{id}}/add" method="POST">
+<p>Press to add {{name}} to your quidditch lineup</p>
+    <button type="submit">Recruit</button>
+</form>
+
+
+
 {{!-- <p>Add a review</p>
 <form action="/reviews/{{id}}/add" method="POST">
     <label>Name</label>

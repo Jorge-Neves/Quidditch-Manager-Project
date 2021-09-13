@@ -89,10 +89,11 @@ router.post("/students/:studentId/edit", async (req, res) => {
 
 
 
-router.post("/students/:studentId/delete", async (req, res) => {
+router.post("/students/:studentId/add", async (req, res) => {
+     const studentToUpdate =  req.params.studentId
     try{
-     await Student.findByIdAndRemove(req.params.studentId);
-    res.redirect("/students/");
+     await Student.findById({studentToUpdate}, { choosen: true}  );
+    res.redirect("/students/:studentId");
 } catch(e){
     console.log("error", e)
 }
