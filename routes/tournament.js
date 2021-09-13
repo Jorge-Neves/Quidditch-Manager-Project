@@ -12,8 +12,8 @@ function winGuessFormula(temperature) {
 }
 
 router.get("/tournaments", async (req, res) => {
-    const citiesArray = ["Lisbon, Portugal", "Berlin, Germany", "Tokio, Japan", "London, United Kingdom", "Buenos Aires, Argentina"]
-const randomCity = citiesArray[Math.floor(Math.random() * citiesArray.length)];
+  const citiesArray = ["Lisbon, Portugal", "Berlin, Germany", "Tokio, Japan", "London, United Kingdom", "Buenos Aires, Argentina"]
+  const randomCity = citiesArray[Math.floor(Math.random() * citiesArray.length)];
 
   weather.find(
     { search: randomCity, degreeType: "C" },
