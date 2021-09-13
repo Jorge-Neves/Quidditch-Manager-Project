@@ -61,7 +61,7 @@ router.get("/students/:studentId", async (req, res) => {
     const studentId = await Student.findById(req.params.studentId)
     res.render("students/students-details", studentId)
 } catch(e){
-    console.log("error", e)
+    console.log("error", e);
 }
 });
 
@@ -83,7 +83,7 @@ router.post("/students/:studentId/edit", async (req, res) => {
     });
     res.redirect(`/students/${req.params.studentId}`);
 } catch(e){
-    console.log("error", e)
+    console.log("error", e);
 }
 });
 
@@ -92,7 +92,7 @@ router.post("/students/:studentId/edit", async (req, res) => {
 router.post("/students/:studentId/add", async (req, res) => {
      const studentToUpdate =  req.params.studentId
     try{
-     await Student.findById({studentToUpdate}, { choosen: true}  );
+     await Student.findById(studentToUpdate, { choosen: true });
     res.redirect("/students/:studentId");
 } catch(e){
     console.log("error", e)
