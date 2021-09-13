@@ -92,13 +92,22 @@ router.post("/students/:studentId/edit", async (req, res) => {
 router.post("/students/:studentId/add", async (req, res) => {
      const studentToUpdate =  req.params.studentId
     try{
-     await Student.findById(studentToUpdate, { choosen: true });
-    res.redirect("/students/:studentId");
+     await Student.findByIdAndUpdate(studentToUpdate, { choosen: true}  );
+    res.redirect(`/students/${studentToUpdate}`);
 } catch(e){
     console.log("error", e)
 }
 });
 
+router.post("/students/:studentId/remove", async (req, res) => {
+    const id =  req.params.studentId
+   try{
+    await Student.findByIdAndUpdate(id, { choosen: false}  );
+   res.redirect(`/students/${id}`);
+} catch(e){
+   console.log("error", e)
+}
+});
 
 module.exports = router;
 

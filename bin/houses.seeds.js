@@ -1,6 +1,6 @@
 require("../db");
 const axios = require("axios");
-const Student = require("../models/Student.model")
+const Home = require("../models/Student.model")
 let students = []
 
 const getStudents = async()=> {
@@ -15,7 +15,3 @@ const getStudents = async()=> {
 };
 
 getStudents();
-
-
-
-

@@ -15,12 +15,12 @@
     <button type="submit">Bench</button>
 </form>
 
-{{/ if}}
+{{else}}
 <form action="/students/{{id}}/add" method="POST">
 <p>Press to add {{name}} to your quidditch lineup</p>
     <button type="submit">Recruit</button>
 </form>
-
+{{/if}}
 
 
 {{!-- <p>Add a review</p>

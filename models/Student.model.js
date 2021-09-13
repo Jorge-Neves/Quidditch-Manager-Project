@@ -8,38 +8,26 @@ const studentSchema = new Schema({
           enum: ["female", "non binary", "male"],
       },
       house: String,
-      patronus: String,
-      yearOfBirth: Number,
       darkArts: {
           Type: Number,
-          default: 0,
         },
-      defenseAgainstTheDarkArts: {
-          Type: Number,
-          default: 0,
+        defenseAgainstTheDarkArts: {
+            Type: Number,
+          },
+        transfiguration: {
+            Type: Number,
+          },
+        alchemy: {
+            Type: Number,
+          },
+
+        health: {
+            type: Boolean,
+
         },
-      transfiguration: {
-          Type: Number,
-          default: 0,
+        choosen: {
+            type: Boolean,
         },
-      alchemy: {
-          Type: Number,
-          default: 0,
-        },
-
-      health: {
-          type: Boolean,
-          default: true,
-
-      },
-      choosen: {
-          type: Boolean,
-          default: false,
-      },
-
-
-      image: String,
-  
 });
 
 const Student = model("Student", studentSchema);
