@@ -75,6 +75,9 @@ const tournament = require("./routes/tournament");
 app.use("/", tournament);
 const houses = require("./routes/houses");
 app.use("/", houses);
+const match = require("./routes/match");
+app.use("/", match);
+
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

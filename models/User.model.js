@@ -6,6 +6,14 @@ const userSchema = new Schema({
   },
   password: String,
   // recoveryQuestion: String,
+  victories: {
+    type: Number,
+    default: 0,
+  },
+  losses: {
+    type: Number,
+    default: 0,
+  }
 });
 
 const User = model("User", userSchema);

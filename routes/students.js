@@ -7,8 +7,9 @@ const Team = require("../models/Team.model.js");
 
 router.get("/students", async (req, res) => {
   try {
-
-    const students = await Student.find({ choosen: true });
+    const house = await House.findOne({ sortedInto: true });
+    const houseName = house.name;
+    const students = await Student.find({house: houseName});
 
     res.render("students/students-list", { students });
   } catch (e) {

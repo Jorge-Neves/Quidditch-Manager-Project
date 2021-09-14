@@ -71,5 +71,5 @@ const houses = [
 ];
 
 House.insertMany(houses).then((housesFromDB) => {
-  console.log(`housess created - ${housesFromDB.length}`);
+  console.log(`houses created - ${housesFromDB.length}`);
 });

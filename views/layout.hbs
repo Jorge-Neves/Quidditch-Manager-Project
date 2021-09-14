@@ -13,16 +13,8 @@
    <body>
    <div class="flex-horizontal">
          
-         <a href="/">Home</a>
-         
-         
-         <a href="/houses/">Houses</a>
-         
-               <a href="/dashboard">Dashboard</a>
-         
-               {{!-- <a href="/halls/create">Create Hall</a> --}}
-         
-            <a href="/students">Students</a>
+            {{!-- <a href="/halls/create">Create Hall</a> --}}
+      
          
             {{!-- <a href="/students/create">Create Student</a> --}}
          
@@ -34,25 +26,35 @@
          
             <a href="/teachers/create">Create Teacher</a> --}}
          
-            <a href="/tournaments">tournaments</a>
-         
             {{!-- <a href="/tournaments/create">Create Tournament</a> --}}
          
-            <a href="/auth">auth</a>
+            {{!-- <a href="/auth">auth</a> --}}
          
             
          
           {{#if loggedInUser}}
-         <p>Welcome {{loggedInUser}}</p>
-         
-            <form action="/logout" method="POST">
-            <button type="submit">Logout</button>
-            </form>
+
+            <a href="/tournaments">tournaments</a>
+
+            <a href="/students">Students</a>
+
+            <a href="/houses/">Houses</a>
+
+            <a href="/dashboard">Dashboard</a>
+
+            
+            <p>Welcome {{loggedInUser}}</p>
+            
+               <form action="/logout" method="POST">
+               <button type="submit">Logout</button>
+               </form>
 
          {{else}}
 
-         <a href="/signup">Singup</a>
-        
+            <a href="/">Home</a>
+
+            <a href="/signup">Singup</a>
+         
             <a href="/login">Login</a>
 
       {{/if}}
