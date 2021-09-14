@@ -25,6 +25,15 @@ async function weatherInfluence(temperature, humidity, skyState){
     });
   }
 
+  function winFormula(teamAverage){
+    const decisionNumber = Math.floor(Math.random() * 20);
+    if(decisionNumber > teamAverage){
+      return false;
+    }else{
+      return true;
+    }
+  }
+
 
 router.get("/dashboard", (req, res) => {
     res.render("dashboard/dashboard-landing");
@@ -38,9 +47,9 @@ router.get("/dashboard/sorting", async (req, res) => {
 router.get("/dashboard/sorting-result", async (req, res) => {
     const randomNumber = Math.floor(Math.random() * 4);
     const houses = await House.find();
-    const choosenHouse = houses[randomNumber];
-    await House.findOneAndUpdate({name: choosenHouse.name}, {choosen: true});
-    res.render("dashboard/dashboard-sorting-result", choosenHouse);
+    const chosenHouse = houses[randomNumber];
+    await House.findOneAndUpdate({name: chosenHouse.name}, {choosen: true});
+    res.render("dashboard/dashboard-sorting-result", chosenHouse);
 });
 
 router.get("/dashboard/match", (req, res) => {
@@ -66,6 +75,9 @@ router.get("/dashboard/match-update", async (req, res) => {
         console.log(skyState);
         weatherInfluence(temperature, humidity, skyState);
     });
+
+    const chosenHouse = await House.findOne({sortedInto: true});
+    
     res.render("dashboard/match-update");
 });
 

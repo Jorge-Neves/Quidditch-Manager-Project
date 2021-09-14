@@ -98,11 +98,7 @@ module.exports = router;
 
 function studentsStatsaverage(teamArray) {
   
-  let choosenTeam = teamArray
-    .filter((student) => student.choosen === true)
-    .map((obj) => obj.darkArts);
+  let choosenTeam = teamArray.filter((student) => student.choosen === true).map((obj) => obj.darkArts);
 
   return choosenTeam;
 }
-
-console.log(studentsStatsaverage());
