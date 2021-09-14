@@ -25,6 +25,15 @@ async function weatherInfluence(temperature, humidity, skyState){
     });
   }
 
+  function winFormula(teamAverage){
+    const decisionNumber = Math.floor(Math.random() * 20);
+    if(decisionNumber > teamAverage){
+      return false;
+    }else{
+      return true;
+    }
+  }
+
 
 router.get("/dashboard", (req, res) => {
     res.render("dashboard/dashboard-landing");
@@ -108,62 +117,11 @@ router.get("/dashboard/match-update", async (req, res) => {
         console.log(skyState);
         weatherInfluence(temperature, humidity, skyState);
     });
+
+    const chosenHouse = await House.findOne({sortedInto: true});
+    
     res.render("dashboard/match-update");
 });
 
 
 module.exports = router;
-
-// if (hat === 1) {
-//   try {
-//     await House.findOneAndUpdate({ name: gryffindor }, { choosen: true });
-//     res.redirect("/dashboard");
-//   } catch (e) {
-//     console.log(
-//       "it seems the halls have had trouble sorting you pls contact the faculty"
-//     );
-//     alert(
-//       "it seems as if the halls have had trouble sorting you pls contact the faculty"
-//     );
-//     res.redirect("/");
-//   }
-// } else if (hat === 2) {
-//   try {
-//     await House.findOneAndUpdate({ name: hufflepuff }, { choosen: true });
-//     res.redirect("/dashboard");
-//   } catch (e) {
-//     console.log(
-//       "it seems the halls have had trouble sorting you pls contact the faculty"
-//     );
-//     alert(
-//       "it seems as if the halls have had trouble sorting you pls contact the faculty"
-//     );
-//     res.redirect("/");
-//   }
-// } else if (hat === 3) {
-//   try {
-//     await House.findOneAndUpdate({ name: ravenclaw }, { choosen: true });
-//     res.redirect("/dashboard");
-//   } catch (e) {
-//     console.log(
-//       "it seems the halls have had trouble sorting you pls contact the faculty"
-//     );
-//     alert(
-//       "it seems as if the halls have had trouble sorting you pls contact the faculty"
-//     );
-//     res.redirect("/");
-//   }
-// } else {
-//   try {
-//     await House.findOneAndUpdate({ name: slytherin }, { choosen: true });
-//     res.redirect("/dashboard");
-//   } catch (e) {
-//     console.log(
-//       "it seems the halls have had trouble sorting you pls contact the faculty"
-//     );
-//     alert(
-//       "it seems as if the halls have had trouble sorting you pls contact the faculty"
-//     );
-//     res.redirect("/");
-//   }
-// }
