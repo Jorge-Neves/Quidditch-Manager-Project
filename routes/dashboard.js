@@ -36,8 +36,11 @@ router.get("/dashboard/sorting", async (req, res) => {
 });
 
 router.get("/dashboard/sorting-result", async (req, res) => {
-    const hat = Math.floor(Math.random() * 4);
-    
+    const randomNumber = Math.floor(Math.random() * 4);
+    const houses = await House.find();
+    const choosenHouse = houses[randomNumber];
+    await House.findOneAndUpdate({name: choosenHouse.name}, {choosen: true});
+    res.render("dashboard/dashboard-sorting-result", choosenHouse);
 });
 
 router.get("/dashboard/match", (req, res) => {

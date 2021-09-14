@@ -39,7 +39,6 @@ const houseSchema = new Schema({
       sortedInto: {
             type: Boolean,
       },      
-
 });
 
 const House = model("House", houseSchema);
