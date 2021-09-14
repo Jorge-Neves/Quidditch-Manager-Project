@@ -3,111 +3,106 @@ const User = require("../models/User.model");
 const House = require("../models/House.model.js");
 const Student = require("../models/Student.model");
 const Team = require("../models/Team.model.js");
-const Teacher = require("../models/Teacher.model.js");
-
-
-
+// const Teacher = require("../Deprecated/Teacher.model.js");
 
 router.get("/students", async (req, res) => {
-    try{
-    const students = await Student.find();
+  try {
+    const students = await Student.find({ choosen: true });
 
-    res.render("students/students-list", {students});
-    } catch(e){
-        console.log("error", e)
-    }
+    res.render("students/students-list", { students });
+  } catch (e) {
+    console.log("error", e);
+  }
 });
 
 router.get("/students/update", (req, res) => {
-   
-    res.render("students/students-update");
-   
-   
+  res.render("students/students-update");
 });
-
-
-
 
 router.get("/students/create", async (req, res) => {
-    res.render("students/students-create")
+  res.render("students/students-create");
 });
 
 router.post("/students/create", async (req, res) => {
-        try{
-        const { name, description } = req.body;
-        await Student.create({ name, description });
-        res.redirect("/students");
-            } catch(e){
-                console.log("error", e)
-            }
-       
-    });
-
+  try {
+    const { name, description } = req.body;
+    await Student.create({ name, description });
+    res.redirect("/students");
+  } catch (e) {
+    console.log("error", e);
+  }
+});
 
 router.post("/students/create", async (req, res) => {
-
-    const { name, description } = req.body;
-try{
+  const { name, description } = req.body;
+  try {
     await Student.create({ name, description });
     res.redirect("/houses/houses-create");
-} catch(e){
-    console.log("error", e)
-}
-  
+  } catch (e) {
+    console.log("error", e);
+  }
 });
 
 router.get("/students/:studentId", async (req, res) => {
-    try{
-    const studentId = await Student.findById(req.params.studentId)
-    res.render("students/students-details", studentId)
-} catch(e){
+  try {
+    const studentId = await Student.findById(req.params.studentId);
+    res.render("students/students-details", studentId);
+  } catch (e) {
     console.log("error", e);
-}
+  }
 });
 
-
 router.get("/students/:studentId/edit", async (req, res) => {
-    try{
-    const students = await Student.findById(req.params.studentId)
+  try {
+    const students = await Student.findById(req.params.studentId);
     res.render("students/students-edit", students);
-} catch(e){
-    console.log("error", e)
-}
+  } catch (e) {
+    console.log("error", e);
+  }
 });
 
 router.post("/students/:studentId/edit", async (req, res) => {
-    const { name, description} = req.body;
-    try{
-     await Student.findByIdAndUpdate(req.params.studentId, {
-       name, description
+  const { name, description } = req.body;
+  try {
+    await Student.findByIdAndUpdate(req.params.studentId, {
+      name,
+      description,
     });
     res.redirect(`/students/${req.params.studentId}`);
-} catch(e){
+  } catch (e) {
     console.log("error", e);
-}
+  }
 });
 
-
-
 router.post("/students/:studentId/add", async (req, res) => {
-     const studentToUpdate =  req.params.studentId
-    try{
-     await Student.findByIdAndUpdate(studentToUpdate, { choosen: true}  );
+  const studentToUpdate = req.params.studentId;
+  try {
+    await Student.findByIdAndUpdate(studentToUpdate, { choosen: true });
     res.redirect(`/students/${studentToUpdate}`);
-} catch(e){
-    console.log("error", e)
-}
+  } catch (e) {
+    console.log("error", e);
+  }
 });
 
 router.post("/students/:studentId/remove", async (req, res) => {
-    const id =  req.params.studentId
-   try{
-    await Student.findByIdAndUpdate(id, { choosen: false}  );
-   res.redirect(`/students/${id}`);
-} catch(e){
-   console.log("error", e)
-}
+  const id = req.params.studentId;
+  try {
+    await Student.findByIdAndUpdate(id, { choosen: false });
+    res.redirect(`/students/${id}`);
+  } catch (e) {
+    console.log("error", e);
+  }
 });
 
 module.exports = router;
 
+function studentsStatsaverage(teamArray) {
+  
+  let choosenTeam = teamArray
+    .filter((student) => student.choosen === true)
+    .map((obj) => obj.darkArts);
+
+  return choosenTeam;
+}
+
+console.log(studentsStatsaverage());

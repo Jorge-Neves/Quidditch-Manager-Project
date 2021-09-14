@@ -3,7 +3,7 @@ const User = require("../models/User.model");
 const House = require("../models/House.model.js");
 const Student = require("../models/Student.model");
 const Team = require("../models/Team.model.js");
-const Teacher = require("../models/Teacher.model.js");
+// const Teacher = require("../models/Teacher.model.js");
 const weather = require("weather-js");
 
 
@@ -36,7 +36,8 @@ router.get("/dashboard/sorting", async (req, res) => {
 });
 
 router.get("/dashboard/sorting-result", async (req, res) => {
-    const randomNumber = Math.floor(Math.random() * 4);
+    const hat = Math.floor(Math.random() * 4);
+    
 });
 
 router.get("/dashboard/match", (req, res) => {
@@ -68,3 +69,56 @@ router.get("/dashboard/match-update", async (req, res) => {
 
 module.exports = router;
 
+// if (hat === 1) {
+//   try {
+//     await House.findOneAndUpdate({ name: gryffindor }, { choosen: true });
+//     res.redirect("/dashboard");
+//   } catch (e) {
+//     console.log(
+//       "it seems the halls have had trouble sorting you pls contact the faculty"
+//     );
+//     alert(
+//       "it seems as if the halls have had trouble sorting you pls contact the faculty"
+//     );
+//     res.redirect("/");
+//   }
+// } else if (hat === 2) {
+//   try {
+//     await House.findOneAndUpdate({ name: hufflepuff }, { choosen: true });
+//     res.redirect("/dashboard");
+//   } catch (e) {
+//     console.log(
+//       "it seems the halls have had trouble sorting you pls contact the faculty"
+//     );
+//     alert(
+//       "it seems as if the halls have had trouble sorting you pls contact the faculty"
+//     );
+//     res.redirect("/");
+//   }
+// } else if (hat === 3) {
+//   try {
+//     await House.findOneAndUpdate({ name: ravenclaw }, { choosen: true });
+//     res.redirect("/dashboard");
+//   } catch (e) {
+//     console.log(
+//       "it seems the halls have had trouble sorting you pls contact the faculty"
+//     );
+//     alert(
+//       "it seems as if the halls have had trouble sorting you pls contact the faculty"
+//     );
+//     res.redirect("/");
+//   }
+// } else {
+//   try {
+//     await House.findOneAndUpdate({ name: slytherin }, { choosen: true });
+//     res.redirect("/dashboard");
+//   } catch (e) {
+//     console.log(
+//       "it seems the halls have had trouble sorting you pls contact the faculty"
+//     );
+//     alert(
+//       "it seems as if the halls have had trouble sorting you pls contact the faculty"
+//     );
+//     res.redirect("/");
+//   }
+// }

@@ -11,57 +11,54 @@
    </head>
 
    <body>
-   <ul class="flex-horizontal">
-         <li>
-         <a href="/">Home</a>
-         </li>
-         <li>
-         <a href="/houses/">Houses</a>
-         </li>
-         <li>
-               <a href="/dashboard">Dashboard</a>
-         </li>
-         <li>
-               <a href="/halls/create">Create Hall</a>
-         </li>
-         <li>
-            <a href="/students">Students</a>
-         </li>
-         <li>
-            <a href="/students/create">Create Student</a>
-         </li>
+   <div class="flex-horizontal">
          
-         <li>
-            <a href="/teachers">Teachers</a>
-         </li>
-         <li>
-            <a href="/teachers/create">Create Teacher</a>
-         </li>
-         <li>
-            <a href="/tournaments">tournaments</a>
-         </li>
+         <a href="/">Home</a>
+         
+         
+         <a href="/houses/">Houses</a>
+         
+               <a href="/dashboard">Dashboard</a>
+         
+               {{!-- <a href="/halls/create">Create Hall</a> --}}
+         
+            <a href="/students">Students</a>
+         
+            {{!-- <a href="/students/create">Create Student</a> --}}
+         
+            {{!-- 
+            
+            Deprecated
 
-           <li>
-            <a href="/tournaments/create">Create Tournament</a>
-         </li>
-         <li>
+            <a href="/teachers">Teachers</a>
+         
+            <a href="/teachers/create">Create Teacher</a> --}}
+         
+            <a href="/tournaments">tournaments</a>
+         
+            {{!-- <a href="/tournaments/create">Create Tournament</a> --}}
+         
             <a href="/auth">auth</a>
-         </li> 
-   
-          <li>
-            <a href="/signup">Singup</a>
-         </li>
-           <li>
-            <a href="/login">Login</a>
-         </li>
-         <li>
+         
+            
+         
+          {{#if loggedInUser}}
+         <p>Welcome {{loggedInUser}}</p>
+         
             <form action="/logout" method="POST">
             <button type="submit">Logout</button>
             </form>
-         </li>
 
-</ul>
+         {{else}}
 
+         <a href="/signup">Singup</a>
+        
+            <a href="/login">Login</a>
+
+      {{/if}}
+   </div>
+
+ 
       {{{body}}}
 
       

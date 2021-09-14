@@ -39,10 +39,7 @@ const houseSchema = new Schema({
       sortedInto: {
             type: Boolean,
       },      
-      houseMembers: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref:"Student",
-          },
+
 });
 
 const House = model("House", houseSchema);

@@ -40,6 +40,19 @@ app.use(
         rolling: true, //rolling allows the session to keep renewing as long as the user interacts with the app
 })
 );
+
+function getCurrentLoggedUser(req, res, next) {
+    if (req.session && req.session.currentUser) {
+        app.locals.loggedInUser = req.session.currentUser.username; //local variable from express
+    } else { 
+        app.locals.loggedInUser = "";
+
+    }
+    next(); //so we can leave the middleware
+}
+
+app.use(getCurrentLoggedUser);
+
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 

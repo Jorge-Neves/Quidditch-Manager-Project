@@ -3,7 +3,7 @@ const User = require("../models/User.model");
 const House = require("../models/House.model.js");
 const Student = require("../models/Student.model");
 const Team = require("../models/Team.model.js");
-const Teacher = require("../models/Teacher.model.js");
+// const Teacher = require("../models/Teacher.model.js");
 const Tournament = require("../models/tournament.model");
 
 
