@@ -7,6 +7,7 @@ const Team = require("../models/Team.model.js");
 
 router.get("/students", async (req, res) => {
   try {
+
     const students = await Student.find({ choosen: true });
 
     res.render("students/students-list", { students });
@@ -94,15 +95,45 @@ router.post("/students/:studentId/remove", async (req, res) => {
   }
 });
 
-module.exports = router;
 
-function studentsStatsaverage(teamArray) {
-  
+function studentsAvgDarkArts(teamArray) {
   let choosenTeam = teamArray
     .filter((student) => student.choosen === true)
     .map((obj) => obj.darkArts);
 
-  return choosenTeam;
+  let avg = choosenTeam.reduce((a, b) => a + b) / choosenTeam.length;
+
+  return avg;
 }
 
-console.log(studentsStatsaverage());
+function studentsAvgDefenseArts(teamArray) {
+  let choosenTeam = teamArray
+    .filter((student) => student.choosen === true)
+    .map((obj) => obj.defenseAgainstTheDarkArts);
+
+  let avg = choosenTeam.reduce((a, b) => a + b) / choosenTeam.length;
+
+  return avg;
+}
+
+function studentsAvgTransfiguration(teamArray) {
+  let choosenTeam = teamArray
+    .filter((student) => student.choosen === true)
+    .map((obj) => obj.transfiguration);
+
+  let avg = choosenTeam.reduce((a, b) => a + b) / choosenTeam.length;
+
+  return avg;
+}
+
+function studentsAvgAlchemy(teamArray) {
+  let choosenTeam = teamArray
+    .filter((student) => student.choosen === true)
+    .map((obj) => obj.alchemy);
+
+  let avg = choosenTeam.reduce((a, b) => a + b) / choosenTeam.length;
+
+  return avg;
+}
+
+module.exports = router;

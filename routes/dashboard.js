@@ -39,12 +39,54 @@ router.get("/dashboard/sorting-result", async (req, res) => {
     const randomNumber = Math.floor(Math.random() * 4);
     const houses = await House.find();
     const choosenHouse = houses[randomNumber];
-    await House.findOneAndUpdate({name: choosenHouse.name}, {choosen: true});
+    await House.findOneAndUpdate({name: choosenHouse.name}, {sortedInto: true});
     res.render("dashboard/dashboard-sorting-result", choosenHouse);
 });
 
 router.get("/dashboard/match", (req, res) => {
     res.render("dashboard/match");
+});
+
+router.get("/dashboard/match/test", async (req, res) => {
+
+  async function studentsAvg(grade) {
+
+    try {
+      const team = await Student.find({choosen: true});
+      const teamStats = team.map((obj) => obj[grade]);
+  
+      let avg = teamStats.reduce((a, b) => a + b) / teamStats.length;
+  
+      return avg;
+    } catch (e) {
+      console.log(
+        "An error ocurred when calculating the stat dark arts average"
+      );
+    }
+  }
+  
+
+    let dark = await studentsAvg("darkArts");
+    let defense = await studentsAvg("defenseAgainstTheDarkArts");
+    let trans = await studentsAvg("transfiguration");
+    let alch = await studentsAvg("alchemy");
+
+  
+    if (dark > defense && dark > trans && dark > alch) {
+      console.log("Dark magic worked test")
+      
+    } else if (defense > dark && defense > trans && defense > alch) {
+      console.log("Defense worked test")
+     
+    } else if (trans > dark && trans > defense && trans > alch) {
+      console.log("morphing magic worked test")
+      
+    } else {
+      console.log("potions worked test")
+      
+    }  
+  
+  res.redirect("/dashboard/match");
 });
 
 

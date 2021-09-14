@@ -20,9 +20,9 @@ const Team = require("../models/Team.model.js");
 
 router.get("/houses/", async (req, res) => {
     try{
-    const houses = await House.findOne({ choosen:true });
+    const houses = await House.findOne({ sortedInto:true });
 
-    res.render("houses/houses-list", {houses});
+    res.render("houses/houses-list", houses);
     } catch(e){
         console.log("error", e)
     }
