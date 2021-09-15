@@ -17,6 +17,16 @@ router.get("/students", async (req, res) => {
   }
 });
 
+router.get("/students/team", async (req, res) => {
+    try {
+      const team = await Student.find({choosen: true});
+  
+      res.render("students/students-team", { team });
+    } catch (e) {
+      console.log("error", e);
+    }
+  });
+
 router.get("/students/update", (req, res) => {
   res.render("students/students-update");
 });
