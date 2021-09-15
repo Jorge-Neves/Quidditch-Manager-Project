@@ -1,5 +1,17 @@
-require("../db");
-const axios = require("axios");
+const mongoose = require("mongoose");
+
+
+mongoose
+  .connect("mongodb+srv://admin:admin@cluster0.eqrrd.mongodb.net/QuidditchDB?retryWrites=true&w=majority")
+  .then((x) => {
+    console.log(
+      `Connected to Mongo! Database name: "${x.connections[0].name}"`
+    );
+  })
+  .catch((err) => {
+    console.error("Error connecting to mongo: ", err);
+  });
+  
 const Student = require("../models/Student.model")
 const students = [
   {

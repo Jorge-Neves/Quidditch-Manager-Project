@@ -13,7 +13,12 @@ const userSchema = new Schema({
   losses: {
     type: Number,
     default: 0,
-  }
+  },
+  teamLimit: {
+    type: Boolean,
+    default: false,
+  }, 
+  students : Array     
 });
 
 const User = model("User", userSchema);
