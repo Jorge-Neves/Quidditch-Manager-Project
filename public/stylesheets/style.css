@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -11,12 +10,32 @@ h1 {
   color: 15px;
 }
 
-.flex-horizontal{
+.nav-bar{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   align-content: center;
+  padding-bottom: 20px;
+  padding-top: 30px;
+  margin-bottom: 20px;
+  background-color: transparent;
+  transition: background-color .3s ease-in;
+}
+
+.nav-bar:hover {
+  background-color: #10141b;
+}
+
+.nav-bar a {
+  text-decoration: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  color: #cfcfcf;
+}
+
+.login-button {
+  background-color: #6b63b5;
 }
 
 
