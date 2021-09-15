@@ -70,19 +70,19 @@ router.post("/match", async (req, res) => {
     
       if (dark > defense && dark > trans && dark > alch) {
         console.log("Dark magic worked test");
-        res.redirect("");
+        res.redirect("/match/match-dark");
         
       } else if (defense > dark && defense > trans && defense > alch) {
         console.log("Defense worked test");
-        res.redirect("");
+        res.redirect("/match/match-defense");
        
       } else if (trans > dark && trans > defense && trans > alch) {
         console.log("morphing magic worked test");
-        res.redirect("");
+        res.redirect("/match/match-transfiguration");
         
       } else {
         console.log("potions worked test");
-        res.redirect("");
+        res.redirect("/match/match-alchemy");
         
       }  
     
@@ -122,44 +122,64 @@ router.get("/match/match-lose", async (req, res) => {
     res.render("match/match-lose");
 });
 
-router.get("/match/match-dark", async (req, res) => {
-    const decisionNumber = Math.floor(Math.random() * 20);
-    if(decisionNumber > teamAverage){
-      return false;
-    }else{
-      return true;
-    }
+router.get("/match/match-dark", (req, res) => {
     res.render("match/match-dark");
 });
 
-router.get("/match/match-alchemy", async (req, res) => {
-    const decisionNumber = Math.floor(Math.random() * 20);
-    if(decisionNumber > teamAverage){
-      return false;
-    }else{
-      return true;
-    }
+router.post("/match/match-dark", async (req, res) => {
+  const decisionNumber = Math.floor(Math.random() * 20);
+  if(decisionNumber < 10 || decisionNumber%5 ===0 ){
+    await User.updateMany({ $inc: { victories: 1}})
+    res.redirect("/match/match-win")
+  }else{
+    await User.updateMany({ $inc: { losses: 1}})
+    res.redirect("/match/match-lose")
+  }
+});
+
+router.get("/match/match-alchemy", (req, res) => {
     res.render("match/match-alchemy");
 });
 
-router.get("/match/match-defense", async (req, res) => {
-    const decisionNumber = Math.floor(Math.random() * 20);
-    if(decisionNumber > teamAverage){
-      return false;
-    }else{
-      return true;
-    }
+router.post("/match/match-alchemy", async (req, res) => {
+  const decisionNumber = Math.floor(Math.random() * 20);
+  if(decisionNumber < 10 || decisionNumber%5 ===0 ){
+    await User.updateMany({ $inc: { victories: 1}})
+    res.redirect("/match/match-win")
+  }else{
+    await User.updateMany({ $inc: { losses: 1}})
+    res.redirect("/match/match-lose")
+  }
+});
+
+router.get("/match/match-defense", (req, res) => {
     res.render("match/match-defense");
 });
 
-router.get("/match/match-transfiguration", async (req, res) => {
-    const decisionNumber = Math.floor(Math.random() * 20);
-    if(decisionNumber > teamAverage){
-      return false;
-    }else{
-      return true;
-    }
+router.post("/match/match-defense", (req, res) => {
+  const decisionNumber = Math.floor(Math.random() * 20);
+  if(decisionNumber < 10 || decisionNumber%5 ===0 ){
+    User.updateMany({ $inc: { victories: 1}})
+    res.redirect("/match/match-win")
+  }else{
+    User.updateMany({ $inc: { losses: 1}})
+    res.redirect("/match/match-lose")
+  }
+});
+
+router.get("/match/match-transfiguration", (req, res) => {
     res.render("match/match-transfiguration");
+});
+
+router.post("/match/match-transfiguration", async (req, res) => {
+  const decisionNumber = Math.floor(Math.random() * 20);
+  if(decisionNumber < 10 || decisionNumber%5 ===0 ){
+    User.updateMany({ $inc: { victories: 1}})
+    res.redirect("/match/match-win")
+  }else{
+    User.updateMany({ $inc: { losses: 1}})
+    res.redirect("/match/match-lose")
+  }
 });
 
 module.exports = router;

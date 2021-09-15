@@ -35,9 +35,9 @@ app.use(
     cookie: {
         sameSite: true, //because both frontend and backend are running on the same hostname - localhost
         httpOnly: true, //we are not using https
-        maxAge: 60000, //session time after 1 minute the session will end
+        // maxAge: 60000, //session time after 1 minute the session will end
     },
-        rolling: true, //rolling allows the session to keep renewing as long as the user interacts with the app
+        // rolling: true, //rolling allows the session to keep renewing as long as the user interacts with the app
 })
 );
 
