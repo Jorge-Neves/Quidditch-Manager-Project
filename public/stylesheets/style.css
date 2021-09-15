@@ -10,17 +10,32 @@ h1 {
   color: 15px;
 }
 
+.top-nav {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  position: fixed;
+}
+
+.top-nav img {
+  width: 120px;
+}
+
 .nav-bar{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   align-content: center;
-  padding-bottom: 20px;
-  padding-top: 30px;
+  height: 60px;
   margin-bottom: 20px;
+  margin-top: 80px;
   background-color: transparent;
   transition: background-color .3s ease-in;
+  position: fixed;
+  color: #fff;
 }
 
 .nav-bar:hover {
@@ -32,18 +47,199 @@ h1 {
   cursor: pointer;
   padding: 10px 20px;
   color: #cfcfcf;
+  font-size: 1em;
+  font-weight: 600;
 }
 
-.login-button {
-  background-color: #6b63b5;
+.nav-bar button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
 }
 
-
-
-.margin-navbar{
+.index {
+  background-image: url("/images/Promo-Modules_three_brothers.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 20px;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  align-content: center;
+  flex-direction: column;
+  text-align: center;
+  height: 800px;
+  color: #fff;
+}
+
+.index-content {
+  margin-top: 120px;
+  max-width: 800px;
+}
+
+.index-content a {
+  text-decoration: none;
+  border: 2px solid #fff;
+  color: #fff;
+  background-color: transparent;
+  padding: 15px 60px;
+  border-radius: 30px;
+  transition: background-color .3s ease-in;
+}
+
+.index-content h1 {
+  margin-bottom: 40px;
+}
+
+.index-content p {
+  margin-bottom: 40px;
+}
+
+.index-content a:hover {
+  background-color: #6b63b5;
+  color: #fff;
+}
+
+.log-div {
+  width: 100vw;
+  min-width: 100%;
+  max-width: 100%;
+  height: 750px;
+}
+
+.login-page {
+  background-image: url("/images/bg@2x.7c1cbd6e.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-top: 200px;
+  height: 100vh;
+  min-height: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+}
+
+.login-form {
+  height: 300px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  justify-content: center;
+}
+
+.login-form input {
+  margin-bottom: 20px;
+  height: 40px;
+}
+
+.login-form div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.login-form button {
+  padding: 5px 25px;
+  border: none;
+  border-radius: 13px;
+  background-color: #6b63b5;
+  transition: background-color .1s ease-in;
+  color: #fff;
+}
+
+.login-form button:hover {
+  background-color: #3c3866;
+}
+
+.login-form a {
+  color: #828bdb;
+}
+
+.login-form a:hover {
+  color: #3c3866;
+}
+
+.signup-page {
+  background-image: url("/images/J.K-R-Copy-compressor.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-top: 200px;
+  height: 750px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+}
+
+.signup-form {
+  height: 300px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  justify-content: center;
+}
+
+.signup-form input {
+  margin-bottom: 20px;
+  height: 40px;
+}
+
+.signup-form button {
+  padding: 5px 25px;
+  border: none;
+  border-radius: 13px;
+  background-color: #6b63b5;
+  transition: background-color .1s ease-in;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.signup-form button:hover {
+  background-color: #3c3866;
+}
+
+.sorting-div-img {
+  background-image: url("/images/Webp.net-gifmaker.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 40px;
+}
+
+.sorting-page {
+  padding-top: 300px;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  color: #fff;
+  text-align: center;
+}
+
+.sorting-page h1 {
+  margin-bottom: 40px;
+}
+
+.sorting-page p {
+  margin-bottom: 40px;
+}
+
+.sorting-page a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #6b63b5;
+  padding: 15px 60px;
+  border-radius: 30px;
+  transition: background-color .3s ease-in;
+}
+
+.sorting-page a:hover {
+  background-color: #3c3866;
+  color: #fff;
 }
