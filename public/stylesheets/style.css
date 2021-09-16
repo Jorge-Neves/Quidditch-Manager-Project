@@ -287,3 +287,122 @@ h1 {
   background-color: #3c3866;
   color: #fff;
 }
+
+
+/* Paulo's classes */
+
+.halls-div-img {
+  background-image: url("/images/Halls.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 40px;
+}
+
+.missing-div-img {
+  background-image: url("/images/missing.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 40px;
+}
+
+.error-div-img {
+  background-image: url("/images/error.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 40px;
+}
+
+/* Win - lose conditions */
+
+.elimination-div-img {
+  background-image: url("/images/Elimenation.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 40px;
+}
+
+.champion-div-img {
+  background-image: url("/images/Champion.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 40px;
+}
+
+.win-div-img {
+  background-image: url("/images/match-win.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 40px;
+}
+
+.lose-div-img {
+  background-image: url("/images/match-lose.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 40px;
+}
+
+/* modifiers*/ 
+
+.dark-div-img {
+  background-image: url("/images/dark.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 40px;
+}
+
+.defense-div-img {
+  background-image: url("/images/patronus.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 40px;
+}
+
+.alchemy-div-img {
+  background-image: url("/images/patronus.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 40px;
+}
+
+.transfiguration-div-img {
+  background-image: url("/images/transfiguration.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
