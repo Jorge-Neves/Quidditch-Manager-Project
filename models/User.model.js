@@ -5,7 +5,11 @@ const userSchema = new Schema({
     type: String,
   },
   password: String,
-  // recoveryQuestion: String,
+  recoveryQuestion: String,
+  House:{
+    type: String,
+    default: "Empty",
+  },
   victories: {
     type: Number,
     default: 0,
@@ -17,7 +21,11 @@ const userSchema = new Schema({
   teamLimit: {
     type: Boolean,
     default: false,
-  }, 
+  },
+  secretSpellCheck: {
+    type: Boolean,
+    default: false,
+  },  
   students : Array     
 });
 

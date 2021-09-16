@@ -28,6 +28,22 @@ router.get("/dashboard/sorting-result", async (req, res) => {
     }
 });
 
+// router.get("/dashboard/spell", (req, res) => {  
+//   res.render("dashboard/dashboard-spell");
+// });
 
+// router.post("/dashboard/spell", async (req, res) => {
+//   const randomNumber = Math.floor(Math.random() * 4);
+//   try{
+//   const houses = await House.find();
+//   const choosenHouse = houses[randomNumber];
+//   await House.findOneAndUpdate({name: choosenHouse.name}, {sortedInto: true});
+//   res.redirect("/dashboard");
+//   else
+//   res.render("dashboard/dashboard-spell", {WrongSpell});
+//   } catch(e) {
+//     console.log("error",e)
+//   }
+// });
 
 module.exports = router;

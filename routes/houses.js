@@ -3,20 +3,11 @@ const User = require("../models/User.model");
 const House = require("../models/House.model.js");
 const Student = require("../models/Student.model");
 const Team = require("../Deprecated/Team.model.js");
-// const Teacher = require("../Deprecated/Teacher.model.js");
 
 
 
 
-// router.get("/houses/", async (req, res) => {
-//     try{
-//     const houses = await House.find();
 
-//     res.render("houses/houses-list", {houses});
-//     } catch(e){
-//         console.log("error", e)
-//     }
-// });
 
 router.get("/houses/", async (req, res) => {
     try{
