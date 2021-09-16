@@ -1,15 +1,15 @@
 <div class="log-div halls-div-img">
-    <div class="sorting-page">
-                <h1>students list</h1>
-                {{#each students}}
-                <a href="students/{{id}}">  {{name}}  </a>
-                house: {{house}}
-                {{/each}}
-                <hr/>
-                {{#if errorMessage}}
-                <h1>{{errorMessage}}</h1>
-                {{/if}}
-                <button><a href="/dashboard">Go back to Dashboard</a></button>
+    <div class="student-list-page row">
+        {{#each students}}
+        <div class="student-list col-md-2">
+            <h4>{{name}}</h4>
+            <p>House: {{house}}</p>
+            <a href="students/{{id}}">See Student</a>
+        </div>
+        {{/each}}
+        {{#if errorMessage}}
+            <h1>{{errorMessage}}</h1>
+        {{/if}}
     </div>
 </div>
 

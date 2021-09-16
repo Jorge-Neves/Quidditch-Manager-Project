@@ -320,6 +320,10 @@ h1 {
   align-items: center;
 }
 
+.tournament-page h1 {
+  padding-top: 20px;
+}
+
 .tournament-page a {
   text-decoration: none;
   color: #fff;
@@ -327,6 +331,7 @@ h1 {
   padding: 15px 60px;
   border-radius: 30px;
   transition: background-color .3s ease-in;
+  margin-top: 20px;
 }
 
 .tournament-page a:hover {
@@ -335,9 +340,74 @@ h1 {
 }
 
 .tournament-board {
-  width: 500px;
-  height: 350px;
+  width: 1080px;
+  height: 420px;
   border: 2px solid #fff;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.players {
+  width: 200px;
+  border-radius: 20px;
+  box-shadow: 0 10px #fff;
+}
+
+.student-team-page {
+  padding-top: 270px;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.student-card {
+  background-color: #413e63;
+  width: 320px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: -15px 20px #6b63b5;
+}
+
+.student-list-page {
+  padding-top: 200px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  padding-left: 50px;
+  text-align: center;
+}
+
+.student-list {
+  border: 2px solid #fff;
+  border-radius: 10px;
+  margin: 100px 20px;
+  text-align: center;
+  background-color: transparent;
+  transition: background-color .3s ease-in;
+}
+
+.student-list:hover {
+  background-color: #000;
+}
+
+.student-list a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #6b63b5;
+  padding: 5px 20px;
+  border-radius: 5px;
+  transition: background-color .3s ease-in;
+}
+
+.student-list a:hover {
+  background-color: #3c3866;
+  color: #fff;
+}
+
+.house-page {
+  padding-top: 200px;
 }
 
 /* Paulo's classes */
