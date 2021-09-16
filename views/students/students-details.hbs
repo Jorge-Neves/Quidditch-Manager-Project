@@ -1,3 +1,6 @@
+<div class="log-div halls-div-img">
+    <div class="sorting-page">
+       
 <h1>{{name}}</h1>
 <h3>House of {{house}}</h3>
 <h4>{{gender}}</h4>
@@ -12,7 +15,7 @@
 {{#if imageUrl}}
     <img src="{{imageUrl}}" />
 {{/if}}
-{{!-- <button><a href="/students/{{id}}/edit">Edit a Student</a></button> --}}
+
 <hr/>
 
 {{#if choosen}}
@@ -29,20 +32,11 @@
     <button type="submit">Recruit</button>
 </form>
 {{/if}}
+        <form action="/finish" method="POST">
+         <button type="submit">Farewell Hogwarts</button>
+         </form>
 
-<button><a href="/students">Go back to students list</a></button>
+         <button><a href="/students">Go back to students list</a></button>
+    </div>
+</div>
 
-
-{{!-- <p>Add a review</p>
-<form action="/reviews/{{id}}/add" method="POST">
-    <label>Name</label>
-    <input type="text" name="name" />
-
-    <label>Comment</label>
-    <textarea name="comment"></textarea>
-    <button type="submit">Add Review</button>
-</form>
-<hr/> --}}
-{{!-- {{#each reviews}}
-    <p>{{comment}} - {{name}}</p>
-{{/each}} --}}

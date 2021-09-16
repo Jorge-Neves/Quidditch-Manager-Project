@@ -254,4 +254,24 @@ router.get("/match/match-champion", (req, res) => {
   res.render("match/match-champion")
 });
 
+
+router.get("/match/match-eliminated", (req, res) => {
+  res.render("match/match-eliminated")
+});
+
+router.post("/finish", async (req, res) => {
+  const studentToUpdate = req.params.studentId;
+  try{
+  const user = await User.findById(req.session.currentUser._id)
+  await Student.findByIdAndDelete(user)
+  await House.updateMany({sortedInto: true}, {sortedInto: false});
+  await Student.updateMany({choosen: true}, {choosen: false});
+  req.session.destroy();
+  res.redirect("/");
+  } catch(e) {
+      console.log("There was an error while finishing the account", e)        
+  };
+});
+
+
 module.exports = router;
