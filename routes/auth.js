@@ -37,7 +37,7 @@ if (username === "" || password === ""){
         username,  //short hand notation when you have the same key and value you can skip it
         password: hashedPassword,
     });
-    res.redirect("/dashboard/sorting");
+    res.redirect("/halls/sorting");
    } catch(e) {
        console.log("error", e)
    }
@@ -72,7 +72,7 @@ router.post("/login", async (req, res) => {
         //object is an object that becomes available after what we set up in app.js
         //this allows for multiple people logged in at the same time
         await House.findOneAndUpdate({name: user.House}, {sortedInto: true})
-        res.redirect("/dashboard")
+        res.redirect("/halls")
     } else {
         res.render("auth/login", {errorMessage:"Invalid login"})
     }

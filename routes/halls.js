@@ -2,12 +2,11 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const House = require("../models/House.model.js");
 const Student = require("../models/Student.model");
-const Team = require("../Deprecated/Team.model.js");
 const weather = require("weather-js");
 
 
 
-router.get("/dashboard", async (req, res) => {
+router.get("/halls", async (req, res) => {
 
   try{
     const chosenHouse = await House.findOne({sortedInto: true});
@@ -21,9 +20,9 @@ router.get("/dashboard", async (req, res) => {
     }else if(chosenHouse.name === "Ravenclaw"){
         houseRoomImage = "/images/Ravenclaw_common_room.png";
     }
-    res.render("dashboard/dashboard-landing", {houseRoomImage});
+    res.render("/halls-landing", {houseRoomImage});
   } catch(e) {
-    console.log("An error occured whilst rendering the dashboard", e)
+    console.log("An error occured whilst rendering the halls", e)
   }
 
   });
@@ -46,11 +45,11 @@ router.get("/dashboard", async (req, res) => {
 // });
 
 
-router.get("/dashboard/sorting", async (req, res) => {
-    res.render("dashboard/dashboard-sorting")
+router.get("/halls/sorting", async (req, res) => {
+    res.render("halls/halls-sorting")
 });
 
-router.get("/dashboard/sorting-result", async (req, res) => {
+router.get("/halls/sorting-result", async (req, res) => {
     const randomNumber = Math.floor(Math.random() * 4);
     
     try{
@@ -59,7 +58,7 @@ router.get("/dashboard/sorting-result", async (req, res) => {
     const choosenHouse = houses[randomNumber];
     await House.findOneAndUpdate({name: choosenHouse.name}, {sortedInto: true});
     await User.findByIdAndUpdate(user,{House: choosenHouse.name })
-    res.render("dashboard/dashboard-sorting-result", choosenHouse);
+    res.render("halls/halls-sorting-result", choosenHouse);
     } catch(e) {
       console.log("error",e)
     }

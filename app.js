@@ -67,7 +67,7 @@ const index = require("./routes/index");
 app.use("/", index);
 const auth = require("./routes/auth");
 app.use("/", auth);
-const dashboard = require("./routes/dashboard");
+const dashboard = require("./routes/halls");
 app.use("/", dashboard);
 const students = require("./routes/students");
 app.use("/", students );

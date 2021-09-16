@@ -124,7 +124,7 @@ router.post("/match/match-win", async (req, res) => {
   if(winTournament !== null){
     res.redirect("/match/match-champion")
     } else {
-      res.redirect("/dashboard" )
+      res.redirect("/halls" )
 }
   } catch(e) {
     console.log("Win function error", e)
@@ -142,7 +142,7 @@ router.post("/match/match-lose", async (req, res) => {
   if(winTournament !== null){
     res.redirect("/match/match-eliminated")
     } else {
-      res.redirect("/dashboard")
+      res.redirect("/halls")
     
     }
   }catch(e) {
@@ -156,22 +156,24 @@ router.get("/match/match-dark", (req, res) => {
 
 router.post("/match/match-dark", async (req, res) => {
   const decisionNumber = Math.floor(Math.random() * 20);
-  const winTournament = await User.findOne(req.session.currentUser._id, {victories: 5})
+  try{
   if(decisionNumber < 10 || decisionNumber%5 ===0 ){
     console.log("incrementing")
     User.findByIdAndUpdate(req.session.currentUser._id, {
-      $inc: { victories: 1}
-    })
-    if(winTournament < 5){
+      $inc: { victories: 1}})
       res.redirect("/match/match-win")
-      } else {
-        res.redirect("/match/match-champion")
-      }
-  }else{
-    await User.findByIdAndUpdate(req.session.currentUser._id, {
-      $inc: { losses: 1}})
-    res.redirect("/match/match-lose")
+  
+  
+   }else{
+      await User.findByIdAndUpdate(req.session.currentUser._id, {
+        $inc: { losses: 1}
+      })
+      res.redirect("/match/match-lose")
   }
+  }catch(e){
+    console.log("Error dark arts check", e)
+  }
+
 });
 
 router.get("/match/match-alchemy", (req, res) => {
@@ -180,24 +182,27 @@ router.get("/match/match-alchemy", (req, res) => {
 
 router.post("/match/match-alchemy", async (req, res) => {
   const decisionNumber = Math.floor(Math.random() * 20);
-  const winTournament = await User.findOne(req.session.currentUser._id, {victories: 5})
+
+  try{
+  
   if(decisionNumber < 10 || decisionNumber%5 ===0 ){
     
     console.log("incrementing")
     await User.findByIdAndUpdate(req.session.currentUser._id, {
       $inc: { victories: 1}
     })
-    if(winTournament !== null){
       res.redirect("/match/match-win")
-      } else {
-        res.redirect("/match/match-champion")
-      }
+
   }else{
     await User.findByIdAndUpdate(req.session.currentUser._id, {
       $inc: { losses: 1}
     })
     res.redirect("/match/match-lose")
   }
+
+} catch(e){
+  console.log("error alchemy", e)
+}
 });
 
 router.get("/match/match-defense", (req, res) => {
@@ -206,23 +211,26 @@ router.get("/match/match-defense", (req, res) => {
 
 router.post("/match/match-defense", async (req, res) => {
   const decisionNumber = Math.floor(Math.random() * 20);
-  
+  try{
+ 
   if(decisionNumber < 10 || decisionNumber%5 ===0 ){
     console.log("incrementing")
     await User.findByIdAndUpdate(req.session.currentUser._id, {
       $inc: { victories: 1}
     })
-    if(winTournament !== null){
+
       res.redirect("/match/match-win")
-      } else {
-        res.redirect("/match/match-champion")
-      }
+    
+      
   }else{
     await User.findByIdAndUpdate(req.session.currentUser._id, {
       $inc: { losses: 1}
     })
     res.redirect("/match/match-lose")
   }
+} catch(e){
+  console.log("Error defense check", e)
+}
 });
 
 router.get("/match/match-transfiguration", (req, res) => {
@@ -231,24 +239,27 @@ router.get("/match/match-transfiguration", (req, res) => {
 
 router.post("/match/match-transfiguration", async (req, res) => {
   const decisionNumber = Math.floor(Math.random() * 20);
-  const winTournament = req.session.currentUser.victories
+  try{
+ 
   if(decisionNumber < 10 || decisionNumber%5 ===0 ){
     console.log("incrementing")
     await User.findByIdAndUpdate(req.session.currentUser._id, {
       $inc: { victories: 1}
     })
-    if(winTournament !== null){
+    
     res.redirect("/match/match-win")
-    } else {
-      res.redirect("/match/match-champion")
-    }
+ 
   }else{
     await User.findByIdAndUpdate(req.session.currentUser._id, {
       $inc: { losses: 1}
     })
     res.redirect("/match/match-lose")
   }
+}catch(e){
+  console.log("error transfiguration", e)
+}
 });
+
 
 router.get("/match/match-champion", (req, res) => {
   res.render("match/match-champion")
