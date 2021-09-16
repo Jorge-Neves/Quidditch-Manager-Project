@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
+const Student = require("../models/Student.model");
+const House = require("../models/House.model")
 
 
 router.get("/signup", (req, res) => {
@@ -76,13 +78,65 @@ router.post("/login", async (req, res) => {
 
     });
 
+    // router.get("/auth/recovery", (req, res) => {
+    //     res.render("auth/password-recovery");
+    // });
 
-    router.post("/logout", (req, res) => {
+    // router.post("/auth/recovery", async (req, res) => {
+    //     const { username, recoveryQuestion } = req.body;
+        
+    //     if (username === "" || recoveryQuestion === ""){
+    //         res.render("auth/login", { errorMessage: "Fill username and Recovery Question"})
+    //         return;
+    //     }
+    
+    //     const user = await User.findOne({ username });
+    //     if (user === null) {
+    //         //found a user that has the same name
+    //         // it cant be written like this cause otherwise we get an array of user const user = await User.find({ username });
+    //         res.render("auth/login", { errorMessage: "Invalid login"});
+    //         //user doesnot exist is not good cybersecurity practices cause it gives hints to possibly nefarious agents
+    //         return;
+    //     }
+    
+    //     if (bcrypt.compareSync(recoveryQuestion, user.recoveryQuestion)) {
+    //         req.session.currentUser = user;
+    //         res.redirect("/dashboard")
+    //     } else {
+    //         res.render("auth/recovery", {errorMessage:"Invalid username or recovery question answer"})
+    //     }
+    
+    //     });
+
+
+    router.post("/logout", async (req, res) => {
+        const studentToUpdate = req.params.studentId;
+        try{
+        await User.findByIdAndUpdate(req.session.currentUser._id, { $set: {"students": []}})
+        await User.findByIdAndUpdate(req.session.currentUser._id, { teamLimit: false})
+        await User.findByIdAndUpdate(req.session.currentUser._id, { secretSpellCheck: false});
+        await House.updateMany({sortedInto: true}, {sortedInto: false});
+        await Student.updateMany({choosen: true}, {choosen: false});
         req.session.destroy();
         res.redirect("/");
-    });
+        } catch(e) {
+            console.log("there was an error with the logout request", e)
+        }
+});
     
-
+    router.post("/finish", async (req, res) => {
+        const studentToUpdate = req.params.studentId;
+        try{
+        const user = await User.findById(req.session.currentUser._id)
+        await Student.findByIdAndDelete(user)
+        await House.updateMany({sortedInto: true}, {sortedInto: false});
+        await Student.updateMany({choosen: true}, {choosen: false});
+        req.session.destroy();
+        res.redirect("/");
+        } catch(e) {
+            console.log("There was an error while finishing the account", e)        
+        };
+    });
 
 
 module.exports = router;

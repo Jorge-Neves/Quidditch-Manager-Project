@@ -2,7 +2,7 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const House = require("../models/House.model.js");
 const Student = require("../models/Student.model");
-const Team = require("../models/Team.model.js");
+const Team = require("../Deprecated/Team.model.js");
 const weather = require("weather-js");
 
 
@@ -118,8 +118,36 @@ router.get("/match/match-win", async (req, res) => {
     res.render("match/match-win");
 });
 
+router.post("/match/match-win", async (req, res) => {
+  try{
+  const winTournament = await User.findOne({victories: 5})
+  if(winTournament !== null){
+    res.redirect("/match/match-champion")
+    } else {
+      res.redirect("/dashboard" )
+}
+  } catch(e) {
+    console.log("Win function error", e)
+  }
+});
+
+
 router.get("/match/match-lose", async (req, res) => {
     res.render("match/match-lose");
+});
+
+router.post("/match/match-lose", async (req, res) => {
+  try{
+  const winTournament = await User.findOne({losses: 5})
+  if(winTournament !== null){
+    res.redirect("/match/match-eliminated")
+    } else {
+      res.redirect("/dashboard")
+    
+    }
+  }catch(e) {
+    console.log("Lose function error", e)
+}
 });
 
 router.get("/match/match-dark", (req, res) => {
@@ -128,11 +156,20 @@ router.get("/match/match-dark", (req, res) => {
 
 router.post("/match/match-dark", async (req, res) => {
   const decisionNumber = Math.floor(Math.random() * 20);
+  const winTournament = await User.findOne(req.session.currentUser._id, {victories: 5})
   if(decisionNumber < 10 || decisionNumber%5 ===0 ){
-    await User.updateMany({ $inc: { victories: 1}})
-    res.redirect("/match/match-win")
+    console.log("incrementing")
+    User.findByIdAndUpdate(req.session.currentUser._id, {
+      $inc: { victories: 1}
+    })
+    if(winTournament < 5){
+      res.redirect("/match/match-win")
+      } else {
+        res.redirect("/match/match-champion")
+      }
   }else{
-    await User.updateMany({ $inc: { losses: 1}})
+    await User.findByIdAndUpdate(req.session.currentUser._id, {
+      $inc: { losses: 1}})
     res.redirect("/match/match-lose")
   }
 });
@@ -143,11 +180,22 @@ router.get("/match/match-alchemy", (req, res) => {
 
 router.post("/match/match-alchemy", async (req, res) => {
   const decisionNumber = Math.floor(Math.random() * 20);
+  const winTournament = await User.findOne(req.session.currentUser._id, {victories: 5})
   if(decisionNumber < 10 || decisionNumber%5 ===0 ){
-    await User.updateMany({ $inc: { victories: 1}})
-    res.redirect("/match/match-win")
+    
+    console.log("incrementing")
+    await User.findByIdAndUpdate(req.session.currentUser._id, {
+      $inc: { victories: 1}
+    })
+    if(winTournament !== null){
+      res.redirect("/match/match-win")
+      } else {
+        res.redirect("/match/match-champion")
+      }
   }else{
-    await User.updateMany({ $inc: { losses: 1}})
+    await User.findByIdAndUpdate(req.session.currentUser._id, {
+      $inc: { losses: 1}
+    })
     res.redirect("/match/match-lose")
   }
 });
@@ -156,13 +204,23 @@ router.get("/match/match-defense", (req, res) => {
     res.render("match/match-defense");
 });
 
-router.post("/match/match-defense", (req, res) => {
+router.post("/match/match-defense", async (req, res) => {
   const decisionNumber = Math.floor(Math.random() * 20);
+  
   if(decisionNumber < 10 || decisionNumber%5 ===0 ){
-    User.updateMany({ $inc: { victories: 1}})
-    res.redirect("/match/match-win")
+    console.log("incrementing")
+    await User.findByIdAndUpdate(req.session.currentUser._id, {
+      $inc: { victories: 1}
+    })
+    if(winTournament !== null){
+      res.redirect("/match/match-win")
+      } else {
+        res.redirect("/match/match-champion")
+      }
   }else{
-    User.updateMany({ $inc: { losses: 1}})
+    await User.findByIdAndUpdate(req.session.currentUser._id, {
+      $inc: { losses: 1}
+    })
     res.redirect("/match/match-lose")
   }
 });
@@ -173,13 +231,27 @@ router.get("/match/match-transfiguration", (req, res) => {
 
 router.post("/match/match-transfiguration", async (req, res) => {
   const decisionNumber = Math.floor(Math.random() * 20);
+  const winTournament = req.session.currentUser.victories
   if(decisionNumber < 10 || decisionNumber%5 ===0 ){
-    User.updateMany({ $inc: { victories: 1}})
+    console.log("incrementing")
+    await User.findByIdAndUpdate(req.session.currentUser._id, {
+      $inc: { victories: 1}
+    })
+    if(winTournament !== null){
     res.redirect("/match/match-win")
+    } else {
+      res.redirect("/match/match-champion")
+    }
   }else{
-    User.updateMany({ $inc: { losses: 1}})
+    await User.findByIdAndUpdate(req.session.currentUser._id, {
+      $inc: { losses: 1}
+    })
     res.redirect("/match/match-lose")
   }
+});
+
+router.get("/match/match-champion", (req, res) => {
+  res.render("match/match-champion")
 });
 
 module.exports = router;
