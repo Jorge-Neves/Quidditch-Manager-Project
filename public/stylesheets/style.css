@@ -243,3 +243,46 @@ h1 {
   background-color: #3c3866;
   color: #fff;
 }
+
+.dashboard-page {
+  padding-top: 180px;
+  background-image: url("/images/hpfc_Mmap_CS_HPL.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 60px;
+  height: 100vh;
+  min-height: 100%;
+  max-height: 100%;
+  color: #fff;
+}
+
+.dashboard-page h3 {
+  margin-left: 60px;
+}
+
+.dashboard-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  height: 500px;
+  justify-content: space-evenly;
+  margin-left: 60%;
+}
+
+.dashboard-buttons a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #6b63b5;
+  width: 300px;
+  height: 60px;
+  border-radius: 30px;
+  transition: background-color .3s ease-in;
+  text-align: center;
+  padding-top: 17px;
+}
+
+.dashboard-buttons a:hover {
+  background-color: #3c3866;
+  color: #fff;
+}
