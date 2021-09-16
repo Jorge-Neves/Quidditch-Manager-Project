@@ -37,7 +37,7 @@ if (username === "" || password === ""){
         username,  //short hand notation when you have the same key and value you can skip it
         password: hashedPassword,
     });
-    res.redirect("/halls/sorting");
+    res.redirect("/login");
    } catch(e) {
        console.log("error", e)
    }
@@ -67,12 +67,23 @@ router.post("/login", async (req, res) => {
     }
 
     if (bcrypt.compareSync(password, user.password)) {
-        //passwords match = login successful
+       
         req.session.currentUser = user;
-        //object is an object that becomes available after what we set up in app.js
-        //this allows for multiple people logged in at the same time
-        await House.findOneAndUpdate({name: user.House}, {sortedInto: true})
+        
+        // await House.findOneAndUpdate({name: user.House}, {sortedInto: true})
+        const userCheck = req.session.currentUser._id
+        const houseUserCheck = await User.findById(userCheck)
+        console.log(houseUserCheck)
+        if(houseUserCheck.House === "Empty"){
+
+                const randomNumber = Math.floor(Math.random() * 4);
+                const houseArray = ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"];
+                const chosenHouse = houseArray[randomNumber];
+                await User.findByIdAndUpdate(req.session.currentUser._id, {House: chosenHouse});
+                res.redirect("/halls/sorting")
+        } else if (houseUserCheck !== "Empty"){
         res.redirect("/halls")
+        }
     } else {
         res.render("auth/login", {errorMessage:"Invalid login"})
     }

@@ -8,20 +8,25 @@ const weather = require("weather-js");
 
 router.get("/halls", async (req, res) => {
 
-  try{
-    const chosenHouse = await House.findOne({sortedInto: true});
+
+        
+  // await House.findOneAndUpdate({name: user.House}, {sortedInto: true})
+try{
+    const user = req.session.currentUser
+    const chosenHouse = await User.findById(user._id)
     let houseRoomImage = "";
-    if(chosenHouse.name === "Gryffindor"){
+    if(chosenHouse.House === "Gryffindor"){
         houseRoomImage = "/images/Gryffindor_common_room.jpg"
-    }else if(chosenHouse.name === "Slytherin"){
+    }else if(chosenHouse.House === "Slytherin"){
         houseRoomImage = "/images/slyth_common_room.jpg";
-    }else if(chosenHouse.name === "Hufflepuff"){
+    }else if(chosenHouse.House === "Hufflepuff"){
         houseRoomImage = "/images/HufflepuffCommonroom_PM_.jpg";
-    }else if(chosenHouse.name === "Ravenclaw"){
+    }else if(chosenHouse.House === "Ravenclaw"){
         houseRoomImage = "/images/Ravenclaw_common_room.png";
     }
-    res.render("/halls-landing", {houseRoomImage});
-  } catch(e) {
+    res.render("halls/halls-landing", {houseRoomImage});
+  
+}catch(e) {
     console.log("An error occured whilst rendering the halls", e)
   }
 
@@ -50,15 +55,29 @@ router.get("/halls/sorting", async (req, res) => {
 });
 
 router.get("/halls/sorting-result", async (req, res) => {
-    const randomNumber = Math.floor(Math.random() * 4);
+    // const randomNumber = Math.floor(Math.random() * 4);
     
     try{
-    const user = await User.findById(req.session.currentUser._id)
-    const houses = await House.find();
-    const choosenHouse = houses[randomNumber];
-    await House.findOneAndUpdate({name: choosenHouse.name}, {sortedInto: true});
-    await User.findByIdAndUpdate(user,{House: choosenHouse.name })
-    res.render("halls/halls-sorting-result", choosenHouse);
+    //   const user = req.session.currentUser
+    // const chosenHouse = await User.findById(user._id)
+    const user2 = req.session.currentUser
+    const chosenHouse = await User.findById(user2._id)
+    let houseRoomImage = "";
+    if(chosenHouse.House === "Gryffindor"){
+        houseRoomImage = "Gryffindor";
+    }else if(chosenHouse.House === "Slytherin"){
+        houseRoomImage = "Slytherin";
+    }else if(chosenHouse.House === "Hufflepuff"){
+        houseRoomImage = "Hufflepuff";
+    }else if(chosenHouse.House === "Ravenclaw"){
+        houseRoomImage = "Ravenclaw";
+    }
+    // const houses = await House.find();
+    // let choosenHouse = "";
+    // choosenHouse = houseUserCheck.House;
+    // await House.findOneAndUpdate({name: choosenHouse.name}, {sortedInto: true});
+    // await User.findByIdAndUpdate(user,{House: choosenHouse.name })
+    res.render("halls/halls-sorting-result", {houseRoomImage});
     } catch(e) {
       console.log("error",e)
     }
