@@ -7,8 +7,19 @@ const weather = require("weather-js");
 
 
 
-router.get("/dashboard", (req, res) => {
-    res.render("dashboard/dashboard-landing");
+router.get("/dashboard", async (req, res) => {
+    const chosenHouse = await House.findOne({sortedInto: true});
+    let houseRoomImage = "";
+    if(chosenHouse.name === "Gryffindor"){
+        houseRoomImage = "/images/Gryffindor_common_room.jpg"
+    }else if(chosenHouse.name === "Slytherin"){
+        houseRoomImage = "/images/slyth_common_room.jpg";
+    }else if(chosenHouse.name === "Hufflepuff"){
+        houseRoomImage = "/images/HufflepuffCommonroom_PM_.jpg";
+    }else if(chosenHouse.name === "Ravenclaw"){
+        houseRoomImage = "/images/Ravenclaw_common_room.png";
+    }
+    res.render("dashboard/dashboard-landing", {houseRoomImage});
 });
 
 

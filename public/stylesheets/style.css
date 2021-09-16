@@ -255,10 +255,27 @@ h1 {
   min-height: 100%;
   max-height: 100%;
   color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .dashboard-page h3 {
   margin-left: 60px;
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+}
+
+.dashboard-content img {
+  width: 300px;
+  margin-top: 60px;
+  border-radius: 30px;
 }
 
 .dashboard-buttons {
@@ -268,7 +285,6 @@ h1 {
   width: 400px;
   height: 500px;
   justify-content: space-evenly;
-  margin-left: 60%;
 }
 
 .dashboard-buttons a {
@@ -286,4 +302,24 @@ h1 {
 .dashboard-buttons a:hover {
   background-color: #3c3866;
   color: #fff;
+}
+
+.tournament-page {
+  padding-top: 150px;
+  background-image: url("/images/Discover-Your-House_Crest-Composite_Full-Width.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  min-height: 100%;
+  max-height: 100%;
+  color: #fff;
+  display: flex;
+  
+}
+
+.tournament-board {
+  width: 500px;
+  height: 400px;
+
 }

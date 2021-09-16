@@ -1,26 +1,7 @@
-<h1>Tournaments list</h1>
-{{#each tournaments}}
- <a href="tournaments/{{id}}">   {{name}} tournament  </a>
-
-<br>
-Description: {{description}}
-<br>
-<br>
-<br>
-{{/each}}
-
-<br>
-<button><a href="/tournaments/update">Update</a></button>
-<hr/>
-{{!-- <ul>
-{{#each books}}
-<li>
-    <a href="books/{{id}}">   {{title}}  </a>
-    <form action="/books/{{id}}/delete" method="POST">
-        <button type="submit">Delete</button>
-    </form>
-    <br/>
-</li>
-{{/each}}
-</ul> --}}
-
+<div class="log-div">
+    <div class="tournament-page">
+        <h1>Tournament Placings</h1>
+        <div class="tournament-board"></div>
+        <a href="/dashboard">Dashboard</a>
+    </div>
+</div>
