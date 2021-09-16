@@ -417,6 +417,16 @@ h1 {
   background-position-y: 40px;
 }
 
+.black-text {
+  color: black;
+}
+
+.test2 {
+  background-color: cornsilk;
+  border: black solid 2px;
+  border-radius: 25px;
+  padding: 20px;
+}
 
 
 

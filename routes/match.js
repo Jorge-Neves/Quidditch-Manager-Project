@@ -38,9 +38,26 @@ async function weatherInfluence(temperature, humidity, skyState){
     });
   }
 
-  router.get("/match", (req, res) => {
-    res.render("match/match");
-});
+  router.get("/match", async(req, res) => {
+
+    try {
+      const studentToUpdate = req.params.studentId;
+      const user = await User.findById(req.session.currentUser._id);
+      if (user.students.length !== 3) {
+          console.log("LIMIT")
+        res.render("halls/halls-landing", {
+          errorMessage: "You need to have 3 team members to play a match",
+        });
+      } else {
+        res.render("match/match")
+          }
+        } catch(e) {
+            console.log("Student 3 players check failed", e)
+          }
+      });
+      
+    
+
 
 
 router.post("/match", async (req, res) => {
