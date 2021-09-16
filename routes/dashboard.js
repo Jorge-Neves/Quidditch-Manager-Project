@@ -29,10 +29,12 @@ router.get("/dashboard/sorting", async (req, res) => {
 
 router.get("/dashboard/sorting-result", async (req, res) => {
     const randomNumber = Math.floor(Math.random() * 4);
+    const studentToUpdate = req.params.studentId;
     try{
     const houses = await House.find();
     const choosenHouse = houses[randomNumber];
     await House.findOneAndUpdate({name: choosenHouse.name}, {sortedInto: true});
+    await User.findByIdAndUpdate(studentToUpdate,{House: choosenHouse.name })
     res.render("dashboard/dashboard-sorting-result", choosenHouse);
     } catch(e) {
       console.log("error",e)
