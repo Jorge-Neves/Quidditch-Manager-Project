@@ -305,9 +305,10 @@ h1 {
 }
 
 .tournament-page {
-  padding-top: 150px;
+  padding-top: 120px;
   background-image: url("/images/Discover-Your-House_Crest-Composite_Full-Width.jpg");
   background-position: center;
+  background-position-y: 80px;
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
@@ -316,15 +317,27 @@ h1 {
   color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
-  
+}
+
+.tournament-page a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #6b63b5;
+  padding: 15px 60px;
+  border-radius: 30px;
+  transition: background-color .3s ease-in;
+}
+
+.tournament-page a:hover {
+  background-color: #3c3866;
+  color: #fff;
 }
 
 .tournament-board {
   width: 500px;
-  height: 400px;
-
+  height: 350px;
+  border: 2px solid #fff;
 }
 
 /* Paulo's classes */
