@@ -23,18 +23,36 @@ router.get("/dashboard", async (req, res) => {
 });
 
 
+// router.get("/dashboard", async (req, res) => {
+//   const user = await User.findById(req.session.currentUser._id)
+//   const chosenHouse = await House.findOne({sortedInto: true});
+//   let houseRoomImage = "";
+//   if(chosenHouse.name === "Gryffindor"){
+//       houseRoomImage = "/images/Gryffindor_common_room.jpg"
+//   }else if(chosenHouse.name === "Slytherin"){
+//       houseRoomImage = "/images/slyth_common_room.jpg";
+//   }else if(chosenHouse.name === "Hufflepuff"){
+//       houseRoomImage = "/images/HufflepuffCommonroom_PM_.jpg";
+//   }else if(chosenHouse.name === "Ravenclaw"){
+//       houseRoomImage = "/images/Ravenclaw_common_room.png";
+//   }
+//   res.render("dashboard/dashboard-landing", {houseRoomImage});
+// });
+
+
 router.get("/dashboard/sorting", async (req, res) => {
     res.render("dashboard/dashboard-sorting")
 });
 
 router.get("/dashboard/sorting-result", async (req, res) => {
     const randomNumber = Math.floor(Math.random() * 4);
-    const studentToUpdate = req.params.studentId;
+    
     try{
+    const user = await User.findById(req.session.currentUser._id)
     const houses = await House.find();
     const choosenHouse = houses[randomNumber];
     await House.findOneAndUpdate({name: choosenHouse.name}, {sortedInto: true});
-    await User.findByIdAndUpdate(studentToUpdate,{House: choosenHouse.name })
+    await User.findByIdAndUpdate(user,{House: choosenHouse.name })
     res.render("dashboard/dashboard-sorting-result", choosenHouse);
     } catch(e) {
       console.log("error",e)
