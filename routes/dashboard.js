@@ -8,6 +8,8 @@ const weather = require("weather-js");
 
 
 router.get("/dashboard", async (req, res) => {
+
+  try{
     const chosenHouse = await House.findOne({sortedInto: true});
     let houseRoomImage = "";
     if(chosenHouse.name === "Gryffindor"){
@@ -20,7 +22,11 @@ router.get("/dashboard", async (req, res) => {
         houseRoomImage = "/images/Ravenclaw_common_room.png";
     }
     res.render("dashboard/dashboard-landing", {houseRoomImage});
-});
+  } catch(e) {
+    console.log("An error occured whilst rendering the dashboard", e)
+  }
+
+  });
 
 
 // router.get("/dashboard", async (req, res) => {
