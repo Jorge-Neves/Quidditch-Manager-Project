@@ -45,9 +45,7 @@ async function weatherInfluence(temperature, humidity, skyState){
       const user = await User.findById(req.session.currentUser._id);
       if (user.students.length !== 3) {
           console.log("LIMIT")
-        res.render("halls/halls-landing", {
-          errorMessage: "You need to have 3 team members to play a match",
-        });
+        res.redirect("/match/error");
       } else {
         res.render("match/match")
           }
@@ -56,7 +54,11 @@ async function weatherInfluence(temperature, humidity, skyState){
           }
       });
       
-    
+      
+  router.get("/match/error", (req, res) => {
+
+        res.render("halls/halls-error");
+  });
 
 
 

@@ -9,14 +9,11 @@ const Team = require("../Deprecated/Team.model.js");
 
 
 
-router.get("/houses/", async (req, res) => {
-    try{
-    const houses = await House.findOne({ sortedInto:true });
-
-    res.render("houses/houses-list", houses);
-    } catch(e){
-        console.log("error", e)
-    }
+router.get("/houses", async (req, res) => {
+    let user = req.session.currentUser;
+    let currentUser = await User.findById(user._id)
+    let currenthouse = await House.findOne({name: currentUser.House})
+    res.render("houses/houses-list", currenthouse);
 });
 
 

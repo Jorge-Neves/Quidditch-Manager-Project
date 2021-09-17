@@ -1,40 +1,27 @@
 <div class="log-div halls-div-img">
-    <div class="sorting-page">
-       
-<h1>{{name}}</h1>
-<h3>House of {{house}}</h3>
-<h4>{{gender}}</h4>
+    <div class="choose-student-page">
+        <div class="student-card">
+            <h1>{{name}}</h1>
+            <h3>House of {{house}}</h3>
+            <h4>{{gender}}</h4>
 
+            <p>Dark Arts: {{darkArts}}</p>
+            <p>Defense Against the Dark Arts: {{defenseAgainstTheDarkArts}}</p>
+            <p>Transfiguration: {{transfiguration}}</p>
+            <p>Alchemy: {{alchemy}}</p>
 
-<h5>grades</h5>
-<p>Dark Arts:{{darkArts}}</p>
-<p>Defense Against the Dark Arts:{{defenseAgainstTheDarkArts}}</p>
-<p>Transfiguration:{{transfiguration}}</p>
-<p>Alchemy:{{alchemy}}</p>
+            {{#if choosen}}
+            <form action="/students/{{id}}/remove" method="POST">
+                <button class="choose-student-button" type="submit">Bench</button>
+            </form>
 
-{{#if imageUrl}}
-    <img src="{{imageUrl}}" />
-{{/if}}
-
-<hr/>
-
-{{#if choosen}}
-
-
-<form action="/students/{{id}}/remove" method="POST">
-<p>Press to remove {{name}} from your quidditch lineup</p>
-    <button type="submit">Bench</button>
-</form>
-
-{{else}}
-<form action="/students/{{id}}/add" method="POST">
-<p>Press to add {{name}} to your quidditch lineup</p>
-    <button type="submit">Recruit</button>
-</form>
-{{/if}}
-        
-
-         <button><a href="/students">Go back to students list</a></button>
+            {{else}}
+            <form action="/students/{{id}}/add" method="POST">
+                <button class="choose-student-button" type="submit">Recruit</button>
+            </form>
+            {{/if}}
+        </div>
+        <a class="choose-student-ancor" href="/students">Go back to students list</a>
     </div>
 </div>
 

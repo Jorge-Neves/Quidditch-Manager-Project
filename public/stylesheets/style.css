@@ -342,7 +342,6 @@ h1 {
 .tournament-board {
   width: 1080px;
   height: 420px;
-  border: 2px solid #fff;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -407,7 +406,95 @@ h1 {
 }
 
 .house-page {
+  background-image: url("/images/J.K-R-Copy-compressor.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   padding-top: 200px;
+  height: 100vh;
+  min-height: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+
+.house-page a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #6b63b5;
+  padding: 15px 60px;
+  border-radius: 30px;
+  transition: background-color .3s ease-in;
+}
+
+.house-page a:hover {
+  background-color: #3c3866;
+  color: #fff;
+}
+
+.choose-student-page {
+  padding-top: 200px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-left: 50px;
+  text-align: center;
+}
+
+.choose-student-ancor {
+  text-decoration: none;
+  color: #fff;
+  background-color: #6b63b5;
+  width: 250px;
+  height: 50px;
+  padding-top: 12px;
+  border-radius: 30px;
+  transition: background-color .3s ease-in;
+  margin-top: 60px;
+}
+
+.choose-student-ancor:hover {
+  background-color: #6b63b5;
+  color: #fff;
+}
+
+.choose-student-button {
+  color: #fff;
+  background-color: #6b63b5;
+  width: 150px;
+  height: 30px;
+  border-radius: 30px;
+  border: none;
+  transition: background-color .3s ease-in;
+}
+
+.choose-student-button:hover {
+  background-color: #6b63b5;
+  color: #fff;
+}
+
+.celebrate-button {
+  color: #fff;
+  background-color: #6b63b5;
+  width: 200px;
+  height: 50px;
+  border-radius: 30px;
+  border: none;
+  transition: background-color .3s ease-in;
+  margin-top: 40px;
+}
+
+.celebrate-button:hover {
+  background-color: #6b63b5;
+  color: #fff;
 }
 
 /* Paulo's classes */

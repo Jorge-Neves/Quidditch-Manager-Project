@@ -8,7 +8,9 @@ const Tournament = require("../Deprecated/tournament.model");
 
 
 router.get("/tournaments", async (req, res) => {
-  res.render("tournaments/tournaments-list");
+  let user5 = req.session.currentUser;
+  let currentUser = await User.findById(user5._id)
+  res.render("tournaments/tournaments-list", currentUser);
 });
 
 router.get("/tournaments/update", (req, res) => {
