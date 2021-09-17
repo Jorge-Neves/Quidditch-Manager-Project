@@ -2,13 +2,12 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const House = require("../models/House.model.js");
 const Student = require("../models/Student.model");
-const Team = require("../Deprecated/Team.model.js");
-// const Teacher = require("../Deprecated/Teacher.model.js");
-
 router.get("/students", async (req, res) => {
   try {
-    const house = await House.findOne({ sortedInto: true });
-    const houseName = house.name;
+    // const house = await House.findOne({ sortedInto: true });
+    const user3 = req.session.currentUser
+    const chosenHouse = await User.findById(user3._id)
+    const houseName = chosenHouse.House;
     const students = await Student.find({ house: houseName });
 
     res.render("students/students-list", { students });

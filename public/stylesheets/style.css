@@ -435,6 +435,13 @@ h1 {
 
 /* Win - lose conditions */
 
+.match-div-img {
+  background-image: url("/images/match.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 40px;
+}
+
 .elimination-div-img {
   background-image: url("/images/Elimenation.jpg");
   background-repeat: no-repeat;
@@ -493,6 +500,16 @@ h1 {
   background-position-y: 40px;
 }
 
+.black-text {
+  color: black;
+}
+
+.test2 {
+  background-color: cornsilk;
+  border: black solid 2px;
+  border-radius: 25px;
+  padding: 20px;
+}
 
 
 
