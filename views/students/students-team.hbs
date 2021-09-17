@@ -1,17 +1,17 @@
 <div class="log-div halls-div-img">
-    <div class="sorting-page">
+    <div class="student-team-page">
        {{#each team}}
-            <h1>{{name}}</h1>
-            <h3>House of {{house}}</h3>
-            <h4>{{gender}}</h4>
-
-
-            <h5>grades</h5>
-            <p>Dark Arts:{{darkArts}}</p>
-            <p>Defense Against the Dark Arts:{{defenseAgainstTheDarkArts}}</p>
-            <p>Transfiguration:{{transfiguration}}</p>
-            <p>Alchemy:{{alchemy}}</p>
-            {{/each}}
+        <div class="student-card">
+            <h2>{{name}}</h2>
+            <h4>House of {{house}}</h4>
+            <h6>{{gender}}</h6>
+            <hr>
+            <p>Dark Arts: {{darkArts}}</p>
+            <p>Defense Against the Dark Arts: {{defenseAgainstTheDarkArts}}</p>
+            <p>Transfiguration: {{transfiguration}}</p>
+            <p>Alchemy: {{alchemy}}</p>
+        </div>
+        {{/each}}
     </div>
 </div>
 
