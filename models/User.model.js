@@ -5,7 +5,6 @@ const userSchema = new Schema({
     type: String,
   },
   password: String,
-  recoveryQuestion: String,
   House:{
     type: String,
     default: "Empty",

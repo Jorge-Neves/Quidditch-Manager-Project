@@ -2,18 +2,9 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const House = require("../models/House.model.js");
 const Student = require("../models/Student.model");
-const Team = require("../Deprecated/Team.model.js");
+const Charm = require("../models/Charm.model");
 const weather = require("weather-js");
 
-
-function winFormula(teamAverage){
-    const decisionNumber = Math.floor(Math.random() * 20);
-    if(decisionNumber > teamAverage){
-      return false;
-    }else{
-      return true;
-    }
-  }
 
 
 async function weatherInfluence(temperature, humidity, skyState){
@@ -38,8 +29,9 @@ async function weatherInfluence(temperature, humidity, skyState){
     });
   }
 
-  router.get("/match", async(req, res) => {
 
+  
+  router.get("/match", async(req, res) => {
     try {
       const studentToUpdate = req.params.studentId;
       const user = await User.findById(req.session.currentUser._id);
@@ -49,18 +41,40 @@ async function weatherInfluence(temperature, humidity, skyState){
           errorMessage: "You need to have 3 team members to play a match",
         });
       } else {
-        res.render("match/match")
+        res.render("match/match-update2")
           }
         } catch(e) {
             console.log("Student 3 players check failed", e)
           }
       });
       
+  
+      router.get("/match-phase2", async (req, res) => {
+        const citiesArray = ["Lisbon, Portugal", "Berlin, Germany", "Tokio, Japan", "London, United Kingdom", "Buenos Aires, Argentina", "Amsterdam, Netherlands", "Luxemburg, Belgium"]
+        const randomCity = citiesArray[Math.floor(Math.random() * citiesArray.length)];
     
+        weather.find(
+            { search: randomCity, degreeType: "C" },
+            function (err, result) {
+            if (err) console.log(err);
+    
+            console.log(JSON.stringify(result, null, 2));
+            const temperature = result[0].current.temperature;
+            const humidity = result[0].current.humidity;
+            const skyState = result[0].current.skycode;
+            console.log(temperature);
+            console.log(humidity);
+            console.log(skyState);
+            weatherInfluence(temperature, humidity, skyState);
+        });
+    
+        const chosenHouse = await House.findOne({sortedInto: true});
+        
+        res.render("match/match-update");
+    });
 
 
-
-router.post("/match", async (req, res) => {
+router.post("/match/final-phase", async (req, res) => {
 
     async function studentsAvg(grade) {
   
@@ -107,29 +121,6 @@ router.post("/match", async (req, res) => {
   });
 
 
-router.get("/match-update", async (req, res) => {
-    const citiesArray = ["Lisbon, Portugal", "Berlin, Germany", "Tokio, Japan", "London, United Kingdom", "Buenos Aires, Argentina", "Amsterdam, Netherlands", "Luxemburg, Belgium"]
-    const randomCity = citiesArray[Math.floor(Math.random() * citiesArray.length)];
-
-    weather.find(
-        { search: randomCity, degreeType: "C" },
-        function (err, result) {
-        if (err) console.log(err);
-
-        console.log(JSON.stringify(result, null, 2));
-        const temperature = result[0].current.temperature;
-        const humidity = result[0].current.humidity;
-        const skyState = result[0].current.skycode;
-        console.log(temperature);
-        console.log(humidity);
-        console.log(skyState);
-        weatherInfluence(temperature, humidity, skyState);
-    });
-
-    const chosenHouse = await House.findOne({sortedInto: true});
-    
-    res.render("match/match-update");
-});
 
 router.get("/match/match-win", async (req, res) => {
     res.render("match/match-win");
@@ -166,6 +157,9 @@ router.post("/match/match-lose", async (req, res) => {
     console.log("Lose function error", e)
 }
 });
+
+//Final phase routes
+
 
 router.get("/match/match-dark", (req, res) => {
     res.render("match/match-dark");
@@ -298,8 +292,54 @@ router.post("/finish", async (req, res) => {
   res.redirect("/");
   } catch(e) {
       console.log("There was an error while finishing the account", e)        
-  };
+  };                                       
 });
 
+router.get("/match/update-1", (req, res) => {
+  const randomEvent = Math.floor(Math.random() * 5);
+  let event = "";
+  if(randomEvent === 1){
+    event === "The rival team's captain is using an illegal broom. This cannot stand!"
+  } else if(randomEvent === 2){
+    event === "A rebellious student is casting spells at the players. Stop him"
+  } else if(randomEvent === 3){
+    event === "It looks some mischievious students are trying to pull out mandrakes. They must be stopped"
+  } else if(randomEvent === 4){
+    event === "A troll has invaded the field. Defend your students!"
+  } else {
+    event === "A rival teacher seems to be placing a curse on your players. This cannot stand!"
+
+  }
+  res.render("match/match-update1", {event})
+  
+});
+
+
+router.get("/match/update-1-results", (req, res) => {
+  res.render("match/match-update1-results")
+  
+});
+
+router.get("/match/golden-victory", async (req, res) => {
+  try{
+    await User.findByIdAndUpdate(req.session.currentUser._id, {
+      $inc: { victories: 1}
+    })
+  res.render("match/match-golden")
+  } catch(e){
+    console("An error occured when trying to capture the golden snitch", e)
+  }
+});
+
+router.get("/match/golden-victory", async (req, res) => {
+  try{
+    await User.findByIdAndUpdate(req.session.currentUser._id, {
+      $inc: { victories: 1}
+    })
+  res.render("match/match-golden")
+  } catch(e){
+    console("An error occured when trying to capture the golden snitch", e)
+  }
+});
 
 module.exports = router;

@@ -3,6 +3,7 @@ const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
 const Student = require("../models/Student.model");
 const House = require("../models/House.model")
+const Charm = require("../models/Charm.model")
 
 
 router.get("/signup", (req, res) => {
