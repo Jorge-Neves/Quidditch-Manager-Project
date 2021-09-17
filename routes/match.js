@@ -2,18 +2,9 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const House = require("../models/House.model.js");
 const Student = require("../models/Student.model");
-const Team = require("../Deprecated/Team.model.js");
+const Charm = require("../models/Charm.model");
 const weather = require("weather-js");
 
-
-function winFormula(teamAverage){
-    const decisionNumber = Math.floor(Math.random() * 20);
-    if(decisionNumber > teamAverage){
-      return false;
-    }else{
-      return true;
-    }
-  }
 
 
 async function weatherInfluence(temperature, humidity, skyState){
@@ -38,8 +29,9 @@ async function weatherInfluence(temperature, humidity, skyState){
     });
   }
 
-  router.get("/match", async(req, res) => {
 
+  
+  router.get("/match", async(req, res) => {
     try {
       const studentToUpdate = req.params.studentId;
       const user = await User.findById(req.session.currentUser._id);
@@ -59,10 +51,20 @@ async function weatherInfluence(temperature, humidity, skyState){
 
         res.render("halls/halls-error");
   });
+  
+    //   router.get("/match-phase2", async (req, res) => {
+        
+    //     const chosenHouse = await House.findOne({sortedInto: true});
+        
+    //     res.render("match/match-update");
+    // });
 
+    router.get("/match/update-1-results", (req, res) => {
+      res.render("match/match-update1-result")
+      
+    });
 
-
-router.post("/match", async (req, res) => {
+router.post("/match/update-1-results", async (req, res) => {
 
     async function studentsAvg(grade) {
   
@@ -109,29 +111,6 @@ router.post("/match", async (req, res) => {
   });
 
 
-router.get("/match-update", async (req, res) => {
-    const citiesArray = ["Lisbon, Portugal", "Berlin, Germany", "Tokio, Japan", "London, United Kingdom", "Buenos Aires, Argentina", "Amsterdam, Netherlands", "Luxemburg, Belgium"]
-    const randomCity = citiesArray[Math.floor(Math.random() * citiesArray.length)];
-
-    weather.find(
-        { search: randomCity, degreeType: "C" },
-        function (err, result) {
-        if (err) console.log(err);
-
-        console.log(JSON.stringify(result, null, 2));
-        const temperature = result[0].current.temperature;
-        const humidity = result[0].current.humidity;
-        const skyState = result[0].current.skycode;
-        console.log(temperature);
-        console.log(humidity);
-        console.log(skyState);
-        weatherInfluence(temperature, humidity, skyState);
-    });
-
-    const chosenHouse = await House.findOne({sortedInto: true});
-    
-    res.render("match/match-update");
-});
 
 router.get("/match/match-win", async (req, res) => {
     res.render("match/match-win");
@@ -168,6 +147,9 @@ router.post("/match/match-lose", async (req, res) => {
     console.log("Lose function error", e)
 }
 });
+
+//Final phase routes
+
 
 router.get("/match/match-dark", (req, res) => {
     res.render("match/match-dark");
@@ -232,7 +214,7 @@ router.post("/match/match-defense", async (req, res) => {
   const decisionNumber = Math.floor(Math.random() * 20);
   try{
  
-  if(decisionNumber < 10 || decisionNumber%5 ===0 ){
+  if(decisionNumber < 10){
     console.log("incrementing")
     await User.findByIdAndUpdate(req.session.currentUser._id, {
       $inc: { victories: 1}
@@ -240,7 +222,8 @@ router.post("/match/match-defense", async (req, res) => {
 
       res.redirect("/match/match-win")
     
-      
+  }else if (decisionNumber > 15){
+    res.redirect("/match/golden-victory")
   }else{
     await User.findByIdAndUpdate(req.session.currentUser._id, {
       $inc: { losses: 1}
@@ -300,7 +283,87 @@ router.post("/finish", async (req, res) => {
   res.redirect("/");
   } catch(e) {
       console.log("There was an error while finishing the account", e)        
-  };
+  };                                       
+});
+
+router.get("/match/update-1", (req, res) => {
+  const randomEvent = Math.floor(Math.random() * 5);
+  let eventWeather = "";
+  if(randomEvent === 1){
+    eventWeather = "The rival team's captain is using an illegal broom. This cannot stand!"
+  } else if(randomEvent === 2){
+    eventWeather = "A rebellious student is casting spells at the players. Stop him"
+  } else if(randomEvent === 3){
+    eventWeather = "It looks some mischievious students are trying to pull out mandrakes. They must be stopped"
+  } else if(randomEvent === 4){
+    eventWeather = "A troll has invaded the field. Defend your students!"
+  } else {
+    eventWeather = "A rival teacher seems to be placing a curse on your players. This cannot stand!"
+  }
+
+  const citiesArray = ["Lisbon, Portugal", "Berlin, Germany", "Tokio, Japan", "London, United Kingdom", "Buenos Aires, Argentina", "Amsterdam, Netherlands", "Luxemburg, Belgium"]
+        const randomCity = citiesArray[Math.floor(Math.random() * citiesArray.length)];
+
+
+        const quotesArray = ["The elements favor Gryffindor, but hinder Slytherin", "The elements favor Hufflepuff, but hinder Ravenclaw", "The elements favor Slytherin, but hinder Gryffindor", "The elements favor Ravenclaw, but hinder Hufflepuff"];
+        const randomNumber = Math.floor(Math.random() * quotesArray.length);
+        const weatherResponse = quotesArray[randomNumber];
+    
+        // weather.find(
+        //     { search: randomCity, degreeType: "C" },
+        //     function (err, result) {
+        //     if (err) console.log(err);
+    
+        //     console.log(JSON.stringify(result, null, 2));
+        //     const temperature = result[0].current.temperature;
+        //     const humidity = result[0].current.humidity;
+        //     const skyState = result[0].current.skycode;
+        //     console.log(temperature);
+        //     console.log(humidity);
+        //     console.log(skyState);
+
+        //     let weatherResponse = "";
+
+        //     if((temperature >= 25 && temperature <= 35) && (humidity >= 65 && humidity <= 70) && (skyState >= 10 && skyState <= 19)){
+        //       // await House.findOneAndUpdate({name: "Gryffindor"}, {houseModifier: 5});
+        //       // await House.findOneAndUpdate({name: "Slytherin"}, {houseModifier: -5});
+    
+        //       weatherResponse = "The element favor Gryffindor, but hinder Slytherin";
+        //     }
+        //     else if((temperature >= 20 && temperature <= 30) && (humidity >= 70 && humidity <= 75) && (skyState >= 30 && skyState <= 39)){
+        //       // await House.findOneAndUpdate({name: "Hufflepuff"}, {houseModifier: 5});
+        //       // await House.findOneAndUpdate({name: "Ravenclaw"}, {houseModifier: -5});
+    
+        //       weatherResponse = "The element favor Hufflepuff, but hinder Ravenclaw";
+        //     }
+        //     else if((temperature >= 15 && temperature <= 25) && (humidity >= 75 && humidity <= 80) && (skyState >= 40 && skyState <= 49)){
+        //       // await House.findOneAndUpdate({name: "Slytherin"}, {houseModifier: 5});
+        //       // await House.findOneAndUpdate({name: "Gryffindor"}, {houseModifier: -5});
+    
+        //       weatherResponse = "The element favor Slytherin, but hinder Gryffindor";
+        //     }
+        //     else if((temperature >= 10 && temperature <= 20) && (humidity >= 80 && humidity <= 85) && (skyState >= 20 && skyState <= 29)){
+        //       // await House.findOneAndUpdate({name: "Ravenclaw"}, {houseModifier: 5});
+        //       // await House.findOneAndUpdate({name: "Hufflepuff"}, {houseModifier: -5});
+    
+        //       weatherResponse = "The element favor Ravenclaw, but hinder Hufflepuff";
+        //     }
+        // });
+        res.render("match/match-update1", {weatherResponse, eventWeather});
+  
+});
+
+
+
+router.get("/match/golden-victory", async (req, res) => {
+  try{
+    await User.findByIdAndUpdate(req.session.currentUser._id, {
+      $inc: { victories: 1}
+    })
+  res.render("match/match-golden")
+  } catch(e){
+    console("An error occured when trying to capture the golden snitch", e)
+  }
 });
 
 

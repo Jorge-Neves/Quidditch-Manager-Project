@@ -1,0 +1,24 @@
+<div class="log-div error-div-img">
+    <div class="sorting-page"><div class="student-card">
+        <h6>Let's just hope no one catches wind of your underhanded tactics</h6>
+                <ul>
+                {{#each spells}}
+                <li>
+                    <a href="spells/{{id}}">   {{name}}  </a>
+                    <form action="/spells/{{id}}/delete" method="POST">
+                        <button type="submit">uncast spell</button>
+                    </form>
+                    
+                </li>
+                {{/each}}
+                </ul>
+
+                <a href="/spells">...</a>
+</div>
+
+
+    </div>
+</div>
+
+
+

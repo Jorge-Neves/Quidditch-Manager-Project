@@ -2,7 +2,9 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const House = require("../models/House.model.js");
 const Student = require("../models/Student.model");
+const Charm = require("../models/Charm.model");
 const weather = require("weather-js");
+
 
 
 
@@ -100,5 +102,45 @@ router.get("/halls/sorting-result", async (req, res) => {
 //     console.log("error",e)
 //   }
 // });
+
+router.get("/spells", async (req, res) => {
+    const spells = await Charm.find();
+    res.render("charm/spell-list", {spells});
+});
+
+router.get("/create-spell", async (req, res) => {
+    res.render("charm/spell-create")
+});
+
+router.post("/create-spell", async (req, res) => {
+    const { name } = req.body;
+    await Charm.create({ name });
+    res.redirect("/spells");
+});
+
+
+router.get("/spell/:spellId", async (req, res) => {
+    const spellId = await Charm.findById(req.params.spellId)
+    res.render("charm/spell-details", spellId)
+});
+
+router.get("/spells/:spellId/edit", async (req, res) => {
+    const spells = await Book.findById(req.params.bookId); 
+    
+    res.render("charms/spell-edit", { spells });
+});
+
+router.post("/spells/:spellId/edit", async (req, res) => {
+    const { name } = req.body;
+     await Charm.findByIdAndUpdate(req.params.spellId, {name});
+    res.redirect(`/spells/${req.params.spellId}`);
+});
+
+
+
+router.post("/spells/:spellId/delete", async (req, res) => {
+     await Charm .findByIdAndRemove(req.params.spellId);
+    res.redirect("/spells");
+});
 
 module.exports = router;

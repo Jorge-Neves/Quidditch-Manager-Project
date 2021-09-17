@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const House = require("../models/House.model.js");
 const Student = require("../models/Student.model");
+const Charm = require("../models/Charm.model");
 router.get("/students", async (req, res) => {
   try {
     // const house = await House.findOne({ sortedInto: true });

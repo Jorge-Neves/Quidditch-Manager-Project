@@ -557,6 +557,20 @@ h1 {
   background-position-y: 40px;
 }
 
+.golden-div-img {
+  background-image: url("/images/golden.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 40px;
+}
+
+.phase-div-img {
+  background-image: url("/images/intermidiate.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 40px;
+}
+
 /* modifiers*/ 
 
 .dark-div-img {
