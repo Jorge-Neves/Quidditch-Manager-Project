@@ -1,8 +1,13 @@
 # Quidditch-Manager-Project
 
+<img src=/DocumentationScreenshot.png alt="A bridge barely lit by the moon with a caption that says 'You have been invited to lead your very own distinct quidditch team to victory'" />
+Take part in a centuries old wizarding tradition
 
+Accept your invitation
 
-From the fictional universe of Harry potter from JK Rowling, experience managing your very own quidditch team. Made by Nuno Gonçalves and Paulo Santos.
+From the fictional universe of Harry potter from JK Rowling, experience managing your very own quidditch team. 
+<br>
+Made by Nuno Gonçalves and Paulo Santos.
 
 
 # Description
