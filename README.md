@@ -40,9 +40,9 @@ NodeJS | Express | Handlebars | JavaScript | Rest API’s | CSS | HTML | Rest AP
 
 # Contacts
 ## Nuno 
-email:
+email: goncalvesnuno00@gmail.com
 <br>
-linkedIn:
+linkedIn: https://www.linkedin.com/in/nunofgg/
 
 ## Paulo Santos
 email: paulo.jorge.ngs@gmail.com
