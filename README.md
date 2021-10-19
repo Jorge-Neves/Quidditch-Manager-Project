@@ -13,7 +13,20 @@ to develop a fantasy sports simulator that was based on the sport of quidditch f
 fictional series Harry Potter. The final version of this Express based full-stack app 
 is in the following link:
 
-# Tutorial
+# Gameplay
+
+## Sorting 
+After making an account the player will be sorted into one of the four houses. As such players will only be able to draft students from thier respective house into their quidditch team.
+
+## Assembling a team
+In order to participate in the quidditch cup players need to pick three students from their house. Each student has unique stat values that will affect the outcome of the match. Its up to the player to determine which stat distribution will increase his chances at victory.
+
+## Match 
+Once the match starts depending on the players team composition different cgs will be unlocked to visually indicate what his team excells at. at the end of the match the team win/ lose score will be updated.
+
+## championship
+If the player wins 5 matches they will be declared champion, if they lose 5 matches they will be eliminated from the competition.
+
 
 # Live Demo
 https://quidditch-manager-project.herokuapp.com/
@@ -26,6 +39,13 @@ Apologies this issue will be fixed in a later version.
 NodeJS | Express | Handlebars | JavaScript | Rest API’s | CSS | HTML | Rest API’s  
 
 # Contacts
+##Nuno 
+email:
+linkedIn:
+
+##Paulo Santos
+email: paulo.jorge.ngs@gmail.com
+linkedIn: www.linkedin.com/in/paulo-j-santos
 
 
 Thank you for stopping by :)
