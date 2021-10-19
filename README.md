@@ -15,8 +15,12 @@ is in the following link:
 
 # Tutorial
 
-# live Demo
+# Live Demo
 https://quidditch-manager-project.herokuapp.com/
+
+# Known Issues
+If the player does not logout via the navbar (i.e. closing the tab), the next logged in player may experience gameplay issues. As a temporary fix a player having issues can logout of his account a re-login to play the game as intented. 
+Apologies this issue will be fixed in a later version.
 
 # Technologies
 NodeJS | Express | Handlebars | JavaScript | Rest API’s | CSS | HTML | Rest API’s  
