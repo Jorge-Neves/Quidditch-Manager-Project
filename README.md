@@ -15,8 +15,7 @@ The goal of Quidditch Manager was to further develop our knowledge of Express ba
 full-stack applications with a focus on the back end of the application. To achieve this goal we 
 used what we learned about NodeJS, MongoDB, HTTP protocols and authentication
 to develop a fantasy sports simulator that was based on the sport of quidditch from the
-fictional series Harry Potter. The final version of this Express based full-stack app 
-is in the following link:
+fictional series Harry Potter. 
 
 # Gameplay
 
@@ -34,6 +33,8 @@ If the player wins 5 matches they will be declared champion, if they lose 5 matc
 
 
 # Live Demo
+The final version of this Express based full-stack app 
+is in the following link:
 https://quidditch-manager-project.herokuapp.com/
 
 # Known Issues
