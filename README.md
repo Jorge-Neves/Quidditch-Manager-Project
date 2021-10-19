@@ -41,10 +41,12 @@ NodeJS | Express | Handlebars | JavaScript | Rest API’s | CSS | HTML | Rest AP
 # Contacts
 ## Nuno 
 email:
+<br>
 linkedIn:
 
 ## Paulo Santos
 email: paulo.jorge.ngs@gmail.com
+<br>
 linkedIn: www.linkedin.com/in/paulo-j-santos
 
 
