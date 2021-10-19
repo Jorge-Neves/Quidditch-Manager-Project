@@ -39,11 +39,11 @@ Apologies this issue will be fixed in a later version.
 NodeJS | Express | Handlebars | JavaScript | Rest API’s | CSS | HTML | Rest API’s  
 
 # Contacts
-##Nuno 
+## Nuno 
 email:
 linkedIn:
 
-##Paulo Santos
+## Paulo Santos
 email: paulo.jorge.ngs@gmail.com
 linkedIn: www.linkedin.com/in/paulo-j-santos
 
